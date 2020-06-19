@@ -37,4 +37,20 @@ public class Arithmetic {
         return Math.pow(amountAlready, exponent);
     }
 
+    public double calculateInverse(double amountAlready) {
+        if(amountAlready <= 0.0) {
+            System.out.println("Cannot take the inverse of zero. Returning back original value");
+            return amountAlready;
+        }
+        return 1 / amountAlready;
+    }
+
+    public Double invertSign(double amountAlready) {
+        return -amountAlready;
+    }
+
+    public Double computeDistanceFormula(double x1, double x2, double x3, double x4) {
+        return 0.0;
+    }
+
 }

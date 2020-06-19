@@ -146,5 +146,70 @@ public class ArithmeticTest {
         //then
         Assert.assertEquals(expectedResult, actualResult, 0.01);
     }
+
+    @Test
+    public void calculateInverseTest() {
+        //given
+        double expectedResult = 0.25;
+
+        //when
+        SciCalculator unit = new SciCalculator();
+        Arithmetic alu = new Arithmetic();
+        
+        //regular inverse
+        unit.setDisplayValue(4.0);
+        double displayValue = unit.getDisplayValue();
+        double newValue = alu.calculateInverse(displayValue);
+        unit.setDisplayValue(newValue);
+        double actualResult = unit.getDisplayValue();
+
+        //divide by zero check
+        double expectedZeroInverse = 0.0;
+        unit.setDisplayValue(0.0);
+        double zeroDisplay = unit.getDisplayValue();
+        double actualZeroInverse = alu.calculateInverse(zeroDisplay);
+
+        //then
+        Assert.assertEquals(expectedResult, actualResult, 0.01);
+        Assert.assertEquals(expectedZeroInverse, actualZeroInverse, 0.01);
+    }
+
+    @Test
+    public void invertSignTest() {
+        //given
+        double expectedResult = -4.0;
+
+        //when
+        SciCalculator unit = new SciCalculator();
+        Arithmetic alu = new Arithmetic();
+
+        unit.setDisplayValue(4.0);
+        double displayValue = unit.getDisplayValue();
+        double newValue = alu.invertSign(displayValue);
+        unit.setDisplayValue(newValue);
+        double actualResult = unit.getDisplayValue();
+
+        //then
+        Assert.assertEquals(expectedResult, actualResult, 0.01);
+    }
+
+    @Test
+    public void computeDistanceFormulaTest() {
+        //given
+        double expectedResult = -4.0;
+
+        //when
+        SciCalculator unit = new SciCalculator();
+        Arithmetic alu = new Arithmetic();
+
+        unit.setDisplayValue(4.0);
+        double displayValue = unit.getDisplayValue();
+        double newValue = alu.invertSign(displayValue);
+        unit.setDisplayValue(newValue);
+        double actualResult = unit.getDisplayValue();
+
+        //then
+        Assert.assertEquals(expectedResult, actualResult, 0.01);
+    }
     
 }
