@@ -1,17 +1,22 @@
 package com.codedifferently;
 
-import static org.junit.Assert.assertTrue;
-
+import org.junit.Assert;
 import org.junit.Test;
+
 
 public class SciCalculatorTest 
 {
-    /**
-     * Rigorous Test :-)
-     */
+
     @Test
-    public void shouldAnswerWithTrue()
-    {
-        assertTrue( true );
+    public void constructorTest() {
+        // Given
+        double expectedDisplay = 0.0;
+
+        // When
+        SciCalculator calc = new SciCalculator();
+        double  actualDisplay = calc.getDisplay();
+
+        // Then
+        Assert.assertEquals(expectedDisplay, actualDisplay, 0);
     }
 }
