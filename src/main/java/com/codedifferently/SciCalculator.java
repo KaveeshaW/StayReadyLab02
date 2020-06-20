@@ -32,7 +32,7 @@ public class SciCalculator
             String method = userChoice.next();
             
             if(method.equals("quit")) {
-                System.out.println("Have a nice day!!");
+                System.out.println("Have a nice day!!!");
                 break;
             }
 
@@ -50,6 +50,16 @@ public class SciCalculator
             else if(method.equals("subtract")) {
                 double subtraction = calc.alu.subtract(userNumber, calc.displayValue);
                 calc.setDisplayValue(subtraction);
+                System.out.println(calc.getDisplayValue());
+            }
+            else if(method.equals("multiply")) {
+                double multiply = calc.alu.multiply(userNumber, calc.displayValue);
+                calc.setDisplayValue(multiply);
+                System.out.println(calc.getDisplayValue());
+            }
+            else if(method.equals("divide")) {
+                double divide = calc.alu.divide(userNumber, calc.displayValue);
+                calc.setDisplayValue(divide);
                 System.out.println(calc.getDisplayValue());
             }       
     }
