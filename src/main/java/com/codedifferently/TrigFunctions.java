@@ -1,26 +1,46 @@
 package com.codedifferently;
 
 public class TrigFunctions {
-    public double sine(){
-        double degrees = 45.0;
-        double radians = Math.to(degrees);
-        double sinValue = Math.sin(radians);
+    public static void main(String[] args) {
+        SciCalculator unit = new SciCalculator();
+        TrigFunctions trigFunctions = new TrigFunctions();
+
+        unit.setDisplayValue(0.12);
+        double displayValue = unit.getDisplayValue();
+        System.out.println(displayValue);
+        
+        double newValue = trigFunctions.inverseSine(displayValue);
+        System.out.println(newValue);
+        unit.setDisplayValue(newValue);
+        double actualResult = unit.getDisplayValue();
+    }
+
+    public double sine(double display){
+        double sinValue = Math.sin(display);
         return sinValue;
     }
-    public double cos(){
-        double degrees = 45.0;
-        double radians = Math.toRadians(degrees);
-        double cosValue = Math.cos(radians);
+    public double cosine(double display){
+        double cosValue = Math.cos(display);
         return cosValue;
     }
-    public double tan(){
-        double degrees = 45.0;
-        double radians = Math.toRadians(degrees);
-        double tanValue = Math.tan(degrees);
+    public double tangent(double display){
+        double tanValue = Math.tan(display);
         return tanValue;
     }
-    public double invCos(){
-        double degrees = 0.0;
-        return degrees;
+    public double inverseSine(double display){
+        double inverseSineValue = Math.asin(display);
+        return inverseSineValue;
+
     }
+    public double inverseCosine(double display){
+        double inverseCosValue = Math.acos(display);
+        return inverseCosValue;
+       
+    }
+    public double inverseTangent(double display){
+        double inverseTangentValue = Math.atan(display);
+        return inverseTangentValue;
+    }
+
+    
 }
