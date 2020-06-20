@@ -1,10 +1,7 @@
 package com.codedifferently;
 
-public class Trig { 
-    public double sinFu
-
-
-
-
-
+public class TrigFunctions { 
+    public double sine() {
+        
+    }
 }

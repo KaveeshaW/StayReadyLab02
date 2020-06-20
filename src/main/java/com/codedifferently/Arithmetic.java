@@ -3,6 +3,8 @@ package com.codedifferently;
 public class Arithmetic {
     public static void main(String[] args) {
         System.out.println("I can do many computations");
+        Arithmetic alu = new Arithmetic();
+        System.out.println(alu.computeQuadraticFormula(3.0, 6.0, 2.0, "pos"));
     }
 
     public double add(double newAmount, double amountAlready) {
@@ -45,11 +47,26 @@ public class Arithmetic {
         return 1 / amountAlready;
     }
 
-    public Double invertSign(double amountAlready) {
+    public double invertSign(double amountAlready) {
         return -amountAlready;
     }
 
-    public Double computeDistanceFormula(double x1, double x2, double x3, double x4) {
+    public double computeDistanceFormula(double x1, double y1, double x2, double y2, double amountAlready) {
+        amountAlready = Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
+        return amountAlready;
+    }
+
+    public double computeQuadraticFormula(double a, double b, double c, String posOrNeg) {
+        double newB = invertSign(b);
+        double posTopPart = newB + Math.sqrt(Math.pow(b, 2) - (4.0 * a * c));
+        System.out.println("This is the top part" + posTopPart);
+        double negTopPart =  newB - Math.sqrt(Math.pow(b, 2) - (4.0 * a * c));
+        if(posOrNeg.equals("pos")) {
+            return posTopPart / (2.0 * a);
+        }
+        else if(posOrNeg.equals("neg")) {
+            return negTopPart / (2.0 * a);
+        }
         return 0.0;
     }
 

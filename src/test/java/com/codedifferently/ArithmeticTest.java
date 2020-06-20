@@ -196,20 +196,42 @@ public class ArithmeticTest {
     @Test
     public void computeDistanceFormulaTest() {
         //given
-        double expectedResult = -4.0;
+        double expectedResult = 3.606;
 
         //when
         SciCalculator unit = new SciCalculator();
         Arithmetic alu = new Arithmetic();
-
-        unit.setDisplayValue(4.0);
+        
         double displayValue = unit.getDisplayValue();
-        double newValue = alu.invertSign(displayValue);
+        double newValue = alu.computeDistanceFormula(5, 4, 3, 1, displayValue);
         unit.setDisplayValue(newValue);
         double actualResult = unit.getDisplayValue();
 
         //then
         Assert.assertEquals(expectedResult, actualResult, 0.01);
+    }
+
+    @Test
+    public void computeQuadraticFormula() {
+        //the numbers I used resulted in negative numbers for both positive and negative
+        double posExpectedResult = -0.423;
+        double negExpectedResult = -1.577;
+
+         //when
+        SciCalculator unit = new SciCalculator();
+        Arithmetic alu = new Arithmetic();
+
+        double posValue = alu.computeQuadraticFormula(3.0, 6.0, 2.0, "pos");
+        unit.setDisplayValue(posValue);
+        double posActualResult = unit.getDisplayValue();
+
+        double negValue = alu.computeQuadraticFormula(3.0, 6.0, 2.0, "neg");
+        unit.setDisplayValue(negValue);
+        double negActualResult = unit.getDisplayValue();
+
+        //then
+        Assert.assertEquals(posExpectedResult, posActualResult, 0.01);
+        Assert.assertEquals(negExpectedResult, negActualResult, 0.01);
     }
     
 }
