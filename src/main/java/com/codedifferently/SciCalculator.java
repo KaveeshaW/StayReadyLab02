@@ -62,7 +62,9 @@ public class SciCalculator
                 calc.setDisplayValue(divide);
                 System.out.println(calc.getDisplayValue());
             }       
-    }
+        }
+        //do not want leaks in memory because the resource is not closed
+        userChoice.close();
 }
 
     //constructor
