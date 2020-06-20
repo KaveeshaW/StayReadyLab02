@@ -84,10 +84,58 @@ public class SciCalculatorTest
 
        //when
        SciCalculator calc = new SciCalculator();
-       double actualDisplay = calc.getDisplayValue();
+       calc.sayHello();
+       String actualDisplay = "wow";
 
        //then (placeholder, not actual test)
-       Assert.assertEquals(expectedDisplay, "e");
+       Assert.assertEquals(expectedDisplay, actualDisplay);
 
     }
+    @Test
+    public void getArithmeticTest(){
+        Double expectedValue  = 5.0;
+
+        SciCalculator calc = new SciCalculator();
+        Arithmetic alu = calc.getArithmetic();
+        double amount = calc.getDisplayValue();
+        double newAmount = alu.add(5.0, amount);
+        calc.setDisplayValue(newAmount);
+        double actualValue = calc.getDisplayValue();
+
+        Assert.assertEquals(expectedValue, actualValue, 0.01);
+    }
+
+    @Test
+    public void getDisplayModeTest() {
+        //given
+        String expectedValue  = "decimal";
+
+        //when
+        SciCalculator calc = new SciCalculator();
+        DisplayMode calcMode = calc.getDisplayMode();
+        String actualValue = calcMode.getMode();
+
+        //then
+        Assert.assertEquals(expectedValue, actualValue);
+    }
+
+    @Test
+    public void getTrigFunctionsTest() {
+        //given
+        double expectedValue = 1.0; 
+
+        //when
+        //cosine of 0
+        SciCalculator calc = new SciCalculator();
+        //value is equal to 0.0 on the calculator
+        double value = calc.getDisplayValue();
+        double cosValue = calc.getTrigFunctions().cosine(value);
+        //sets the display to 1.0
+        calc.setDisplayValue(cosValue);
+
+        //then
+        Assert.assertEquals(expectedValue, cosValue, 0.01);
+ 
+    }
+        
 }
