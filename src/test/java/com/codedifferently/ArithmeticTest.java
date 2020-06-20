@@ -233,5 +233,22 @@ public class ArithmeticTest {
         Assert.assertEquals(posExpectedResult, posActualResult, 0.01);
         Assert.assertEquals(negExpectedResult, negActualResult, 0.01);
     }
+
+    @Test
+    public void computeHypotenus() {
+        //the numbers I used resulted in negative numbers for both positive and negative
+        double expectedResult = 9.220;
+
+         //when
+        SciCalculator unit = new SciCalculator();
+        Arithmetic alu = new Arithmetic();
+
+        double newValue = alu.computeHypotenus(6.0, 7.0);
+        unit.setDisplayValue(newValue);
+        double actualResult = unit.getDisplayValue();
+
+        //then
+        Assert.assertEquals(expectedResult, actualResult, 0.01);
+    }
     
 }

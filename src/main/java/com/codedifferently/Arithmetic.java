@@ -70,4 +70,8 @@ public class Arithmetic {
         return 0.0;
     }
 
+    public double computeHypotenus(double a, double b) {
+        return Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+    }
+
 }
