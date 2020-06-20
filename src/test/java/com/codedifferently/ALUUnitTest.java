@@ -10,7 +10,7 @@ public class ALUUnitTest {
 
         //when
         SciCalculator unit = new SciCalculator();
-        ALUUnit alu = new ALUUnit();
+        Arithmetic alu = new Arithmetic();
 
         double displayValue = unit.getDisplayValue();
         unit.setDisplayValue(alu.add(10.4, displayValue));

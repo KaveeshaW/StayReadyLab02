@@ -59,7 +59,7 @@ public class SciCalculator
         else if  (userInput == 3){
             //set to Hexadecimal 
         }
-        else if(userInput = 4) { 
+        else if(userInput == 4) { 
             // set to Octal
         }
         
