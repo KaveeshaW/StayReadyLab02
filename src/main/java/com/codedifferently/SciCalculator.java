@@ -127,14 +127,17 @@ public class SciCalculator
                 calc.displayResult(calc, invertedNum, "invertSign");
             } 
             else if(method.toLowerCase().equals("distance")) {
+                calc.valueNotUsedWarning("computeDistanceFormula");
                 double distance = calc.alu.computeDistanceFormula(userNumArr[0], userNumArr[1], userNumArr[2], userNumArr[3], calc.displayValue);
                 calc.displayResult(calc, distance, "computeDistanceFormula");
             }
             else if(method.toLowerCase().equals("quad")) {
+                calc.valueNotUsedWarning("computeQuadraticFormula");
                 double quadResult = calc.alu.computeQuadraticFormula(userNumArr[0], userNumArr[1], userNumArr[2], posOrNeg, calc.displayValue);
                 calc.displayResult(calc, quadResult, "computeQuadraticFormula");
             }
             else if(method.toLowerCase().equals("hyp")) {
+                calc.valueNotUsedWarning("computeHypotenus");
                 double hyp = calc.alu.computeHypotenus(userNumArr[0], userNumArr[1]);
                 calc.displayResult(calc, hyp, "computeHypotenus");
             } 
@@ -212,6 +215,13 @@ public class SciCalculator
         System.out.println("After performing " + functionName + " we get: " + calc.getDisplayValue());
     }
 
+    public void valueNotUsedWarning(String whichMethod) {
+        System.out.println();
+        System.out.println("Note that " + whichMethod + " will not use the current value as part of the calculation.");
+        System.out.println("If an error occurred the function will just return the previous display value.");
+        System.out.println();
+    }
+ 
     public Arithmetic getArithmetic() {
         return this.alu;
     }
