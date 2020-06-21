@@ -20,7 +20,7 @@ public class SciCalculator
     public static void main( String[] args )
     {
         SciCalculator calc = new SciCalculator();
-        calc.sayHello();
+        System.out.println(calc.sayHello());
         System.out.println(calc.getDisplayValue());
 
         Scanner userChoice = new Scanner(System.in);
@@ -55,6 +55,8 @@ public class SciCalculator
                 for(int i = 0; i < numInput; i++) {
                     userNumArr[i] = userChoice.nextDouble();
                 }
+
+                //TESTING PURPOSES
                 // for(int i = 0; i < numInput; i++) {
                 //     System.out.println("inputted numbers: " + userNumArr[i]);
                 // }
@@ -64,6 +66,7 @@ public class SciCalculator
                     posOrNeg = userChoice.next();
                 }
             }
+            //TESTING PURPOSES
             //System.out.println("userInput: " + userNumber);
             //System.out.println("method: " + method);
             
@@ -136,7 +139,7 @@ public class SciCalculator
             //     System.out.println("After performing addMemory, we get: " + calc.getDisplayValue());
             // } 
             else if(method.toLowerCase().equals("trig")) {
-                    System.out.println("Is the value that you're entering in degrees or radians? Please enter degrees or radians");  
+                    System.out.println("Is the value that you're entering in degrees or radians? Please enter degrees or radians.");  
                     
                     //takes in whether it is degrees or radians, .next() takes in the next string
                     String userTrigMode = userChoice.next(); 
@@ -176,11 +179,9 @@ public class SciCalculator
         }
         //do not want leaks in memory because the resource is not closed
         userChoice.close();
-}
-// Prompt user to enter Trig Method (Settng)
-// Once there, have a initially asks the user the user what mode they would like to be in RADIANS or DEGREES
-// Moreover, ask create a keyword, similar to "quit", that can bring up this options maybe "trigMode"
-// Anyway, then continue regularly like we did for the simple math, inputs etc
+    }
+    //end main()
+    //************************************************************** 
 
     //constructor
     public SciCalculator() {
@@ -225,8 +226,8 @@ public class SciCalculator
         return this.trigFunctions;
     }
 
-    public void sayHello() { 
-        System.out.println("Welcome to Kaveesha's and Gio's Calculator");
+    public String sayHello() { 
+        return "Welcome to Kaveesha's and Gio's Calculator";
     }
     public Memory getMemory() {
         return this.memory;

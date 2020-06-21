@@ -5,11 +5,7 @@ import org.junit.Test;
 
 
 public class SciCalculatorTest 
-{
-    public static void main(String[] args) {
-        System.out.println("yo");
-    }
-    
+{ 
     @Test
     public void constructorTest() {
         // Given
@@ -84,8 +80,7 @@ public class SciCalculatorTest
 
        //when
        SciCalculator calc = new SciCalculator();
-       calc.sayHello();
-       String actualDisplay = "wow";
+       String actualDisplay = calc.sayHello();
 
        //then (placeholder, not actual test)
        Assert.assertEquals(expectedDisplay, actualDisplay);
