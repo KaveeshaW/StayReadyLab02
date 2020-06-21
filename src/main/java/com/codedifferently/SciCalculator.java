@@ -14,7 +14,8 @@ public class SciCalculator
     private TrigUnits trigUnits;
     private TrigFunctions trigFunctions;
 
-    
+    //list function names
+    //let user choose a function
     public static void main( String[] args )
     {
         SciCalculator calc = new SciCalculator();
