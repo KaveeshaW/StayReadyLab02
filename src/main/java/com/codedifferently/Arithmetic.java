@@ -4,7 +4,7 @@ public class Arithmetic {
     public static void main(String[] args) {
         System.out.println("I can do many computations");
         Arithmetic alu = new Arithmetic();
-        System.out.println(alu.computeQuadraticFormula(3.0, 6.0, 2.0, "pos"));
+        System.out.println(alu.computeQuadraticFormula(3.0, 6.0, 2.0, "pos", 0.0));
     }
 
     public double add(double newAmount, double amountAlready) {
@@ -20,7 +20,7 @@ public class Arithmetic {
     }
 
     public double divide(double divideAmount, double amountAlready) {
-        if(divideAmount <= 0.0) {
+        if(divideAmount == 0.0) {
             System.out.println("Cannot divide by zero. Returning back original value");
             return amountAlready;
         }
@@ -32,6 +32,10 @@ public class Arithmetic {
     }
 
     public double calculateSquareRoot(double amountAlready) {
+        if(amountAlready < 0.0) {
+            System.out.println("Cannot calculate squareRoot less than 0.0. Returing back original value");
+            return amountAlready;
+        }
         return Math.sqrt(amountAlready);
     }
 
@@ -40,7 +44,7 @@ public class Arithmetic {
     }
 
     public double calculateInverse(double amountAlready) {
-        if(amountAlready <= 0.0) {
+        if(amountAlready == 0.0) {
             System.out.println("Cannot take the inverse of zero. Returning back original value");
             return amountAlready;
         }
@@ -56,7 +60,11 @@ public class Arithmetic {
         return amountAlready;
     }
 
-    public double computeQuadraticFormula(double a, double b, double c, String posOrNeg) {
+    public double computeQuadraticFormula(double a, double b, double c, String posOrNeg, double amountAlready) {
+        if(a == 0.0) {
+            System.out.println("Cannot do quadratic formula with a as 0. Returning back original value");
+            return amountAlready;
+        }
         double newB = invertSign(b);
         double posTopPart = newB + Math.sqrt(Math.pow(b, 2) - (4.0 * a * c));
         System.out.println("This is the top part" + posTopPart);

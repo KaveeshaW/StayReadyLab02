@@ -69,7 +69,7 @@ public class SciCalculatorTest
         String expectedDisplay = "Err";
 
         //when
-        SciCalculator calc = new SciCalculator();
+        //SciCalculator calc = new SciCalculator();
         //String actualDisplay = calc.displayError();
 
         //then (placeholder, not actual test)

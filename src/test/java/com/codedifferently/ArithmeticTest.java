@@ -110,21 +110,30 @@ public class ArithmeticTest {
     @Test
     public void calculateSquareRootTest() {
         //given
-        double expectedResult = 2.0;
+        double posExpectedResult = 2.0;
+        double negExpectedResult = -2.0;
 
         //when
         SciCalculator unit = new SciCalculator();
         Arithmetic alu = new Arithmetic();
         
-        //otherwise will just give you 0
+        //testing positive result
         unit.setDisplayValue(4.0);
-        double displayValue = unit.getDisplayValue();
-        double newValue = alu.calculateSquareRoot(displayValue);
-        unit.setDisplayValue(newValue);
-        double actualResult = unit.getDisplayValue();
+        double posDisplayValue = unit.getDisplayValue();
+        double newPosValue = alu.calculateSquareRoot(posDisplayValue);
+        unit.setDisplayValue(newPosValue);
+        double actualPosResult = unit.getDisplayValue();
+
+        //testing negative result
+        unit.setDisplayValue(-2.0);
+        double negDisplayValue = unit.getDisplayValue();
+        double newNegValue = alu.calculateSquareRoot(negDisplayValue);
+        unit.setDisplayValue(newNegValue);
+        double actualNegResult = unit.getDisplayValue();
 
         //then
-        Assert.assertEquals(expectedResult, actualResult, 0.01);
+        Assert.assertEquals(posExpectedResult, actualPosResult, 0.01);
+        Assert.assertEquals(negExpectedResult, actualNegResult, 0.01);
     }
 
     @Test
@@ -150,7 +159,11 @@ public class ArithmeticTest {
     @Test
     public void calculateInverseTest() {
         //given
-        double expectedResult = 0.25;
+        //positive check
+        double expectedPosResult = 0.25;
+        //divide by zero check
+        double expectedZeroInverse = 0.0;
+        double expectedNegResult = -0.25;
 
         //when
         SciCalculator unit = new SciCalculator();
@@ -158,20 +171,27 @@ public class ArithmeticTest {
         
         //regular inverse
         unit.setDisplayValue(4.0);
-        double displayValue = unit.getDisplayValue();
-        double newValue = alu.calculateInverse(displayValue);
-        unit.setDisplayValue(newValue);
-        double actualResult = unit.getDisplayValue();
-
-        //divide by zero check
-        double expectedZeroInverse = 0.0;
+        double posdisplayValue = unit.getDisplayValue();
+        double newPosValue = alu.calculateInverse(posdisplayValue);
+        unit.setDisplayValue(newPosValue);
+        double actualPosResult = unit.getDisplayValue();
+        
+        //zero inverse
         unit.setDisplayValue(0.0);
         double zeroDisplay = unit.getDisplayValue();
         double actualZeroInverse = alu.calculateInverse(zeroDisplay);
 
+        //negative inverse
+        unit.setDisplayValue(-4.0);
+        double negDisplayValue = unit.getDisplayValue();
+        double newNegValue = alu.calculateInverse(negDisplayValue);
+        unit.setDisplayValue(newNegValue);
+        double actualNegResult = unit.getDisplayValue();
+
         //then
-        Assert.assertEquals(expectedResult, actualResult, 0.01);
+        Assert.assertEquals(expectedPosResult, actualPosResult, 0.01);
         Assert.assertEquals(expectedZeroInverse, actualZeroInverse, 0.01);
+        Assert.assertEquals(expectedNegResult, actualNegResult, 0.01);
     }
 
     @Test
@@ -211,28 +231,28 @@ public class ArithmeticTest {
         Assert.assertEquals(expectedResult, actualResult, 0.01);
     }
 
-    @Test
-    public void computeQuadraticFormula() {
-        //the numbers I used resulted in negative numbers for both positive and negative
-        double posExpectedResult = -0.423;
-        double negExpectedResult = -1.577;
+    // @Test
+    // public void computeQuadraticFormula() {
+    //     //the numbers I used resulted in negative numbers for both positive and negative
+    //     double posExpectedResult = -0.423;
+    //     double negExpectedResult = -1.577;
 
-         //when
-        SciCalculator unit = new SciCalculator();
-        Arithmetic alu = new Arithmetic();
+    //      //when
+    //     SciCalculator unit = new SciCalculator();
+    //     Arithmetic alu = new Arithmetic();
 
-        double posValue = alu.computeQuadraticFormula(3.0, 6.0, 2.0, "pos");
-        unit.setDisplayValue(posValue);
-        double posActualResult = unit.getDisplayValue();
+    //     double posValue = alu.computeQuadraticFormula(3.0, 6.0, 2.0, "pos");
+    //     unit.setDisplayValue(posValue);
+    //     double posActualResult = unit.getDisplayValue();
 
-        double negValue = alu.computeQuadraticFormula(3.0, 6.0, 2.0, "neg");
-        unit.setDisplayValue(negValue);
-        double negActualResult = unit.getDisplayValue();
+    //     double negValue = alu.computeQuadraticFormula(3.0, 6.0, 2.0, "neg");
+    //     unit.setDisplayValue(negValue);
+    //     double negActualResult = unit.getDisplayValue();
 
-        //then
-        Assert.assertEquals(posExpectedResult, posActualResult, 0.01);
-        Assert.assertEquals(negExpectedResult, negActualResult, 0.01);
-    }
+    //     //then
+    //     Assert.assertEquals(posExpectedResult, posActualResult, 0.01);
+    //     Assert.assertEquals(negExpectedResult, negActualResult, 0.01);
+    // }
 
     @Test
     public void computeHypotenus() {
