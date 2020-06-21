@@ -236,7 +236,8 @@ public class ArithmeticTest {
         //the numbers I used resulted in negative numbers for both positive and negative
         double posExpectedResult = -0.423;
         double negExpectedResult = -1.577;
-        double errorExpectedResult = 0.0;
+        double zeroExpectedResult = 0.0;
+        double negSquareRootRes = 0.0;
 
          //when
         SciCalculator unit = new SciCalculator();
@@ -255,18 +256,27 @@ public class ArithmeticTest {
         unit.setDisplayValue(negValue);
         double negActualResult = unit.getDisplayValue();
 
-        //testing the error
+        //testing dividing by zero
         unit.setDisplayValue(0.0);
-        double errorDisplayVal = unit.getDisplayValue();
+        double zeroDisplayVal = unit.getDisplayValue();
         //doesn't really matter what I pass in, just want a to be 0.0 because that is what I am dividing by
-        double errorValue = alu.computeQuadraticFormula(0.0, 6.0, 2.0, "neg", errorDisplayVal);
-        unit.setDisplayValue(errorValue);
-        double errorActualResult = unit.getDisplayValue();
+        double zeroErrorValue = alu.computeQuadraticFormula(0.0, 6.0, 2.0, "neg", zeroDisplayVal);
+        unit.setDisplayValue(zeroErrorValue);
+        double zeroErrorActualResult = unit.getDisplayValue();
+
+        //testing taking the square root of a negative number
+        unit.setDisplayValue(0.0);
+        double negErrorDisplayVal = unit.getDisplayValue();
+        //doesn't really matter what I pass in, just want a to be 0.0 because that is what I am dividing by
+        double squareRootErrorValue = alu.computeQuadraticFormula(0.0, 6.0, 2.0, "neg", negErrorDisplayVal);
+        unit.setDisplayValue(squareRootErrorValue);
+        double negSquareRootActualResult = unit.getDisplayValue();
 
         //then
         Assert.assertEquals(posExpectedResult, posActualResult, 0.01);
         Assert.assertEquals(negExpectedResult, negActualResult, 0.01);
-        Assert.assertEquals(errorExpectedResult, errorActualResult, 0.01);
+        Assert.assertEquals(zeroExpectedResult, zeroErrorActualResult, 0.01);
+        Assert.assertEquals(negSquareRootRes, negSquareRootActualResult, 0.01);
     }
 
     @Test

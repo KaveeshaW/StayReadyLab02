@@ -57,7 +57,6 @@ public class Arithmetic {
     }
 
     public double computeDistanceFormula(double x1, double y1, double x2, double y2, double amountAlready) {
-        System.out.println("This is a test");
         return Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
     }
 
@@ -66,15 +65,20 @@ public class Arithmetic {
             System.out.println("Cannot do quadratic formula with a as 0. Returning back original value");
             return amountAlready;
         }
+        //avoiding square root returning NAN because it's trying to take the sqrt of a negative
+        if(Math.pow(b, 2) - (4.0 * a * c) < 0.0) {
+            System.out.println("Cannot take the square root of a negative number (after computing the top half under the square root). Returning back original value.");
+            return amountAlready;
+        }
         double newB = invertSign(b);
-        double posTopPart = newB + Math.sqrt(Math.pow(b, 2) - (4.0 * a * c));
-        System.out.println("This is the top part" + posTopPart);
-        double negTopPart =  newB - Math.sqrt(Math.pow(b, 2) - (4.0 * a * c));
-        System.out.println("This is the top part" + negTopPart);
         if(posOrNeg.equals("pos")) {
+            double posTopPart = newB + Math.sqrt(Math.pow(b, 2) - (4.0 * a * c));
+            System.out.println("This is the top part pos: " + posTopPart);
             return posTopPart / (2.0 * a);
         }
         else if(posOrNeg.equals("neg")) {
+            double negTopPart =  newB - Math.sqrt(Math.pow(b, 2) - (4.0 * a * c));
+            System.out.println("This is the top part neg: " + negTopPart);
             return negTopPart / (2.0 * a);
         }
         return 0.0;
