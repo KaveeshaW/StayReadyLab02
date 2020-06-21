@@ -43,7 +43,14 @@ public class SciCalculator
             if(!method.toLowerCase().equals("trig")) {
                 System.out.println("How many numbers are you going to input?");
                 numInput = userChoice.nextDouble();
-                System.out.println("Enter the inputs one at a time, then press enter");
+                //only print out this statement if greater than 0
+                if(numInput > 0) {
+                    System.out.println("Enter the inputs one at a time, then press enter"); 
+                }
+                if(numInput < 0) {
+                    System.out.println("cannot enter a negative number. Please try again.");
+                    continue;
+                }
                 
                 for(int i = 0; i < numInput; i++) {
                     userNumArr[i] = userChoice.nextDouble();

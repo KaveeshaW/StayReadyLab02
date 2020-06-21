@@ -71,12 +71,12 @@ public class Arithmetic {
             return amountAlready;
         }
         double newB = invertSign(b);
-        if(posOrNeg.equals("pos")) {
+        if(posOrNeg.equals("positive") || posOrNeg.equals("pos")) {
             double posTopPart = newB + Math.sqrt(Math.pow(b, 2) - (4.0 * a * c));
             System.out.println("This is the top part pos: " + posTopPart);
             return posTopPart / (2.0 * a);
         }
-        else if(posOrNeg.equals("neg")) {
+        else if(posOrNeg.equals("negative") || posOrNeg.equals("neg")) {
             double negTopPart =  newB - Math.sqrt(Math.pow(b, 2) - (4.0 * a * c));
             System.out.println("This is the top part neg: " + negTopPart);
             return negTopPart / (2.0 * a);

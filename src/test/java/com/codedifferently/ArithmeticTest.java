@@ -245,14 +245,14 @@ public class ArithmeticTest {
 
         //testing positive things
         double posDisplayValue = unit.getDisplayValue();
-        double posValue = alu.computeQuadraticFormula(3.0, 6.0, 2.0, "pos", posDisplayValue);
+        double posValue = alu.computeQuadraticFormula(3.0, 6.0, 2.0, "positive", posDisplayValue);
         unit.setDisplayValue(posValue);
         double posActualResult = unit.getDisplayValue();
 
         //testing the negative things
         unit.setDisplayValue(0.0);
         double negDisplayValue = unit.getDisplayValue();
-        double negValue = alu.computeQuadraticFormula(3.0, 6.0, 2.0, "neg", negDisplayValue);
+        double negValue = alu.computeQuadraticFormula(3.0, 6.0, 2.0, "negative", negDisplayValue);
         unit.setDisplayValue(negValue);
         double negActualResult = unit.getDisplayValue();
 
@@ -260,7 +260,7 @@ public class ArithmeticTest {
         unit.setDisplayValue(0.0);
         double zeroDisplayVal = unit.getDisplayValue();
         //doesn't really matter what I pass in, just want a to be 0.0 because that is what I am dividing by
-        double zeroErrorValue = alu.computeQuadraticFormula(0.0, 6.0, 2.0, "neg", zeroDisplayVal);
+        double zeroErrorValue = alu.computeQuadraticFormula(0.0, 6.0, 2.0, "pos", zeroDisplayVal);
         unit.setDisplayValue(zeroErrorValue);
         double zeroErrorActualResult = unit.getDisplayValue();
 
