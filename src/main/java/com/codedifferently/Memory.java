@@ -8,7 +8,7 @@ public class Memory {
     }
 
     public void resetMemory() {
-        this.valueInMemory = 0;
+        this.valueInMemory = 0.0;
     }
 
     public double recallValue() {

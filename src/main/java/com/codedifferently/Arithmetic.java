@@ -5,6 +5,7 @@ public class Arithmetic {
         System.out.println("I can do many computations");
         Arithmetic alu = new Arithmetic();
         System.out.println(alu.computeQuadraticFormula(3.0, 6.0, 2.0, "pos", 0.0));
+        System.out.println(alu.computeQuadraticFormula(1.0, 2.0, 3.0, "neg", 0.0));
     }
 
     public double add(double newAmount, double amountAlready) {
@@ -56,8 +57,8 @@ public class Arithmetic {
     }
 
     public double computeDistanceFormula(double x1, double y1, double x2, double y2, double amountAlready) {
-        amountAlready = Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
-        return amountAlready;
+        System.out.println("This is a test");
+        return Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
     }
 
     public double computeQuadraticFormula(double a, double b, double c, String posOrNeg, double amountAlready) {
@@ -69,6 +70,7 @@ public class Arithmetic {
         double posTopPart = newB + Math.sqrt(Math.pow(b, 2) - (4.0 * a * c));
         System.out.println("This is the top part" + posTopPart);
         double negTopPart =  newB - Math.sqrt(Math.pow(b, 2) - (4.0 * a * c));
+        System.out.println("This is the top part" + negTopPart);
         if(posOrNeg.equals("pos")) {
             return posTopPart / (2.0 * a);
         }

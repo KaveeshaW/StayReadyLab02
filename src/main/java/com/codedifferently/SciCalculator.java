@@ -13,6 +13,7 @@ public class SciCalculator
     private DisplayMode displayMode;
     private TrigUnits trigUnits;
     private TrigFunctions trigFunctions;
+    private Memory memory;
 
     //list function names
     //let user choose a function
@@ -25,8 +26,7 @@ public class SciCalculator
         Scanner userChoice = new Scanner(System.in);
         double numInput = 0.0;
         double [] userNumArr = new double [4];
-
-        
+        String posOrNeg = "";
 
         System.out.println("Please enter a command name.");
         //hasNext checks to see if there is any input
@@ -48,9 +48,17 @@ public class SciCalculator
                 for(int i = 0; i < numInput; i++) {
                     userNumArr[i] = userChoice.nextDouble();
                 }
+                // for(int i = 0; i < numInput; i++) {
+                //     System.out.println("inputted numbers: " + userNumArr[i]);
+                // }
+                
+                if(method.toLowerCase().equals("quad")) {
+                    System.out.println("Positive or negative?");
+                    posOrNeg = userChoice.next();
+                }
             }
-            // System.out.println("userInput: " + userNumber);
-            // System.out.println("method: " + method);
+            //System.out.println("userInput: " + userNumber);
+            //System.out.println("method: " + method);
             
 
             //2. call functions with if statements
@@ -79,7 +87,7 @@ public class SciCalculator
                 calc.setDisplayValue(square);
                 System.out.println("After performing calculateSquare, we get: " + calc.getDisplayValue());
             }  
-            else if(method.toLowerCase().equals("squareRoot")) {
+            else if(method.toLowerCase().equals("squareroot")) {
                 double squareRoot = calc.alu.calculateSquareRoot(calc.displayValue);
                 calc.setDisplayValue(squareRoot);
                 System.out.println("After performing calculateSquareRoot, we get: " + calc.getDisplayValue());
@@ -99,13 +107,29 @@ public class SciCalculator
                 calc.setDisplayValue(invertedNum);
                 System.out.println("After performing invertSign, we get: " + calc.getDisplayValue());
             } 
-            else if(method.toLowerCase().equals("computeHyp")) {
+            else if(method.toLowerCase().equals("distance")) {
+                double distance = calc.alu.computeDistanceFormula(userNumArr[0], userNumArr[1], userNumArr[2], userNumArr[3], calc.displayValue);
+                calc.setDisplayValue(distance);
+                System.out.println("After performing computeDistanceFormula, we get: " + calc.getDisplayValue());
+            }
+            else if(method.toLowerCase().equals("quad")) {
+                double distance = calc.alu.computeQuadraticFormula(userNumArr[0], userNumArr[1], userNumArr[2], posOrNeg, calc.displayValue);
+                calc.setDisplayValue(distance);
+                System.out.println("After performing computeQuadraticFormula, we get: " + calc.getDisplayValue());
+            }
+            else if(method.toLowerCase().equals("hyp")) {
                 double hyp = calc.alu.computeHypotenus(userNumArr[0], userNumArr[1]);
                 calc.setDisplayValue(hyp);
                 System.out.println("After performing computeHypotenus, we get: " + calc.getDisplayValue());
             } 
+            //three more if statements with the names M+ MRC MC
+            // else if(method.toLowerCase().equals("M+")){ 
+            //     double newMemory = calc.memory.addMemory(calc.displayValue);
+            //     calc.setDisplayValue(newMemory);
+            //     System.out.println("After performing addMemory, we get: " + calc.getDisplayValue());
+            // } 
             else if(method.toLowerCase().equals("trig")) {
-                    System.out.println("Is the value that you're entering in degrees or radians? Please Enter Degrees or Radians");  
+                    System.out.println("Is the value that you're entering in degrees or radians? Please enter degrees or radians");  
                     
                     //takes in whether it is degrees or radians, .next() takes in the next string
                     String userTrigMode = userChoice.next(); 
@@ -217,4 +241,8 @@ public class SciCalculator
     public void sayHello() { 
         System.out.println("Welcome to Kaveesha's and Gio's Calculator");
     }
+    public Memory getMemory() {
+        return this.memory;
+    }
 }
+ 

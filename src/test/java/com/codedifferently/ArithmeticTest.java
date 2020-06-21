@@ -231,28 +231,43 @@ public class ArithmeticTest {
         Assert.assertEquals(expectedResult, actualResult, 0.01);
     }
 
-    // @Test
-    // public void computeQuadraticFormula() {
-    //     //the numbers I used resulted in negative numbers for both positive and negative
-    //     double posExpectedResult = -0.423;
-    //     double negExpectedResult = -1.577;
+    @Test
+    public void computeQuadraticFormulaTest() {
+        //the numbers I used resulted in negative numbers for both positive and negative
+        double posExpectedResult = -0.423;
+        double negExpectedResult = -1.577;
+        double errorExpectedResult = 0.0;
 
-    //      //when
-    //     SciCalculator unit = new SciCalculator();
-    //     Arithmetic alu = new Arithmetic();
+         //when
+        SciCalculator unit = new SciCalculator();
+        Arithmetic alu = new Arithmetic();
 
-    //     double posValue = alu.computeQuadraticFormula(3.0, 6.0, 2.0, "pos");
-    //     unit.setDisplayValue(posValue);
-    //     double posActualResult = unit.getDisplayValue();
+        //testing positive things
+        double posDisplayValue = unit.getDisplayValue();
+        double posValue = alu.computeQuadraticFormula(3.0, 6.0, 2.0, "pos", posDisplayValue);
+        unit.setDisplayValue(posValue);
+        double posActualResult = unit.getDisplayValue();
 
-    //     double negValue = alu.computeQuadraticFormula(3.0, 6.0, 2.0, "neg");
-    //     unit.setDisplayValue(negValue);
-    //     double negActualResult = unit.getDisplayValue();
+        //testing the negative things
+        unit.setDisplayValue(0.0);
+        double negDisplayValue = unit.getDisplayValue();
+        double negValue = alu.computeQuadraticFormula(3.0, 6.0, 2.0, "neg", negDisplayValue);
+        unit.setDisplayValue(negValue);
+        double negActualResult = unit.getDisplayValue();
 
-    //     //then
-    //     Assert.assertEquals(posExpectedResult, posActualResult, 0.01);
-    //     Assert.assertEquals(negExpectedResult, negActualResult, 0.01);
-    // }
+        //testing the error
+        unit.setDisplayValue(0.0);
+        double errorDisplayVal = unit.getDisplayValue();
+        //doesn't really matter what I pass in, just want a to be 0.0 because that is what I am dividing by
+        double errorValue = alu.computeQuadraticFormula(0.0, 6.0, 2.0, "neg", errorDisplayVal);
+        unit.setDisplayValue(errorValue);
+        double errorActualResult = unit.getDisplayValue();
+
+        //then
+        Assert.assertEquals(posExpectedResult, posActualResult, 0.01);
+        Assert.assertEquals(negExpectedResult, negActualResult, 0.01);
+        Assert.assertEquals(errorExpectedResult, errorActualResult, 0.01);
+    }
 
     @Test
     public void computeHypotenus() {

@@ -137,5 +137,20 @@ public class SciCalculatorTest
         Assert.assertEquals(expectedValue, cosValue, 0.01);
  
     }
+    /*@Test
+    public void getMemory() { 
+        //given
+        double expectedValue = 0.0; 
+
+        //when 
+        //the memory is being cleared
+        SciCalculator calc = new SciCalculator(); 
+
         
+        //then 
+        Assert.assertEquals(expectedValue, actual);
+        
+
+    }
+        */
 }
