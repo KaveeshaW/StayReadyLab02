@@ -15,6 +15,15 @@ public class SciCalculator
     private TrigFunctions trigFunctions;
     private Memory memory;
 
+    //constructor
+    public SciCalculator() {
+        this.displayValue = 0.0;
+        this.alu = new Arithmetic();
+        this.displayMode = new DisplayMode();
+        this.trigUnits = new TrigUnits();
+        this.trigFunctions = new TrigFunctions();
+    }
+
     //list function names
     //let user choose a function
     public static void main( String[] args )
@@ -28,7 +37,7 @@ public class SciCalculator
         double [] userNumArr = new double [4];
         String posOrNeg = "";
 
-        System.out.println("Please enter a command name.");
+        System.out.println("Please enter a command name. To quit, type 'quit'.");
         //hasNext checks to see if there is any input
         while(userChoice.hasNext()) {
             
@@ -36,19 +45,27 @@ public class SciCalculator
             //first gets the method name, then the inputted numbers
             String method = userChoice.next();
             
-            if(method.equals("quit")) {
+            if(method.toLowerCase().equals("quit")) {
                 System.out.println("Have a nice day!!!");
                 break;
             }
+            //trig goes right into asking about degrees or radians, so we want to skip this part of the loop
             if(!method.toLowerCase().equals("trig")) {
                 System.out.println("How many numbers are you going to input?");
                 numInput = userChoice.nextDouble();
                 //only print out this statement if greater than 0
-                if(numInput > 0) {
+                //do not want user to be prompted again if its a method that does not take in any parameters
+                if(numInput > 0 && numInput <= 4) {
                     System.out.println("Enter the inputs one at a time, then press enter"); 
                 }
+                if(numInput > 4) {
+                    System.out.println("A number greater than 4 is not allowed because the maximum number of inputs you can have is 4. Please try again.");
+                    System.out.println("Please enter a command name. To quit, type 'quit'.");
+                    continue;
+                }
                 if(numInput < 0) {
-                    System.out.println("cannot enter a negative number. Please try again.");
+                    System.out.println("Cannot enter a negative number. Please try again.");
+                    System.out.println("Please enter a command name. To quit, type 'quit'.");
                     continue;
                 }
                 
@@ -62,7 +79,8 @@ public class SciCalculator
                 // }
                 
                 if(method.toLowerCase().equals("quad")) {
-                    System.out.println("Positive or negative?");
+                    System.out.println("Do you want the positive or negative value? Type positive (can also just type 'pos') or negative (can also just type 'neg').");
+                    System.out.println("Note that typing positive does not gaurentee getting a positive number, it just gaurentees it gives you the answer with the + sign on the top of the fraction.");
                     posOrNeg = userChoice.next();
                 }
             }
@@ -74,63 +92,51 @@ public class SciCalculator
             //2. call functions with if statements
             if(method.toLowerCase().equals("add")) {
                 double addition = calc.alu.add(userNumArr[0], calc.displayValue);
-                calc.setDisplayValue(addition);
-                System.out.println("After performing add, we get: " + calc.getDisplayValue());
+                calc.displayResult(calc, addition, "add");
             }
             else if(method.toLowerCase().equals("subtract")) {
                 double subtraction = calc.alu.subtract(userNumArr[0], calc.displayValue);
-                calc.setDisplayValue(subtraction);
-                System.out.println("After performing subtract, we get: " + calc.getDisplayValue());
+                calc.displayResult(calc, subtraction, "subtract");
             }
             else if(method.toLowerCase().equals("multiply")) {
                 double multiply = calc.alu.multiply(userNumArr[0], calc.displayValue);
-                calc.setDisplayValue(multiply);
-                System.out.println("After performing multiply, we get: " + calc.getDisplayValue());
+                calc.displayResult(calc, multiply, "multiply");
             }
             else if(method.toLowerCase().equals("divide")) {
                 double divide = calc.alu.divide(userNumArr[0], calc.displayValue);
-                calc.setDisplayValue(divide);
-                System.out.println("After performing divide, we get: " + calc.getDisplayValue());
+                calc.displayResult(calc, divide, "divide");
             }
             else if(method.toLowerCase().equals("square")) {
                 double square = calc.alu.calculateSquare(calc.displayValue);
-                calc.setDisplayValue(square);
-                System.out.println("After performing calculateSquare, we get: " + calc.getDisplayValue());
+                calc.displayResult(calc, square, "calculateSquare");
             }  
             else if(method.toLowerCase().equals("squareroot")) {
                 double squareRoot = calc.alu.calculateSquareRoot(calc.displayValue);
-                calc.setDisplayValue(squareRoot);
-                System.out.println("After performing calculateSquareRoot, we get: " + calc.getDisplayValue());
+                calc.displayResult(calc, squareRoot, "calculateSquareRoot");
             } 
             else if(method.toLowerCase().equals("exp")) {
                 double exp = calc.alu.calculateExponential(userNumArr[0], calc.displayValue);
-                calc.setDisplayValue(exp);
-                System.out.println("After performing calculateExponential, we get: " + calc.getDisplayValue());
+                calc.displayResult(calc, exp, "calculateExponential");
             } 
             else if(method.toLowerCase().equals("inverse")) {
                 double inverse = calc.alu.calculateInverse(calc.displayValue);
-                calc.setDisplayValue(inverse);
-                System.out.println("After performing calculateInverse, we get: " + calc.getDisplayValue());
+                calc.displayResult(calc, inverse, "calculateInverse");
             } 
             else if(method.toLowerCase().equals("invert")) {
                 double invertedNum = calc.alu.invertSign(calc.displayValue);
-                calc.setDisplayValue(invertedNum);
-                System.out.println("After performing invertSign, we get: " + calc.getDisplayValue());
+                calc.displayResult(calc, invertedNum, "invertSign");
             } 
             else if(method.toLowerCase().equals("distance")) {
                 double distance = calc.alu.computeDistanceFormula(userNumArr[0], userNumArr[1], userNumArr[2], userNumArr[3], calc.displayValue);
-                calc.setDisplayValue(distance);
-                System.out.println("After performing computeDistanceFormula, we get: " + calc.getDisplayValue());
+                calc.displayResult(calc, distance, "computeDistanceFormula");
             }
             else if(method.toLowerCase().equals("quad")) {
-                double distance = calc.alu.computeQuadraticFormula(userNumArr[0], userNumArr[1], userNumArr[2], posOrNeg, calc.displayValue);
-                calc.setDisplayValue(distance);
-                System.out.println("After performing computeQuadraticFormula, we get: " + calc.getDisplayValue());
+                double quadResult = calc.alu.computeQuadraticFormula(userNumArr[0], userNumArr[1], userNumArr[2], posOrNeg, calc.displayValue);
+                calc.displayResult(calc, quadResult, "computeQuadraticFormula");
             }
             else if(method.toLowerCase().equals("hyp")) {
                 double hyp = calc.alu.computeHypotenus(userNumArr[0], userNumArr[1]);
-                calc.setDisplayValue(hyp);
-                System.out.println("After performing computeHypotenus, we get: " + calc.getDisplayValue());
+                calc.displayResult(calc, hyp, "computeHypotenus");
             } 
             //three more if statements with the names M+ MRC MC
             // else if(method.toLowerCase().equals("M+")){ 
@@ -171,26 +177,16 @@ public class SciCalculator
                     // start the if statements for the different trig functions
                     if(trigMethod.equals("sine")) {
                         double sin = calc.trigFunctions.sine(userNumArr[0]);
-                        calc.setDisplayValue(sin);
-                        System.out.println("After performing sine, we get: " + calc.getDisplayValue());
+                        calc.displayResult(calc, sin, "sine");
                     }
             }
-            System.out.println("Please enter a command: ");
+            System.out.println("Please enter a command. To quit, type 'quit'.");
         }
         //do not want leaks in memory because the resource is not closed
         userChoice.close();
     }
     //end main()
     //************************************************************** 
-
-    //constructor
-    public SciCalculator() {
-        this.displayValue = 0.0;
-        this.alu = new Arithmetic();
-        this.displayMode = new DisplayMode();
-        this.trigUnits = new TrigUnits();
-        this.trigFunctions = new TrigFunctions();
-    }
     
     public double getDisplayValue() {
         return this.displayValue;
@@ -208,6 +204,12 @@ public class SciCalculator
     public void displayError() { 
         System.out.println("Err");  
         clearDisplay();   
+    }
+
+    //although the return type of this function is void, because I am passing a reference to the calculator object, the calculator in main will update itself
+    public void displayResult(SciCalculator calc, double result, String functionName) {
+        calc.setDisplayValue(result);
+        System.out.println("After performing " + functionName + " we get: " + calc.getDisplayValue());
     }
 
     public Arithmetic getArithmetic() {

@@ -25,7 +25,6 @@ public class TrigUnits {
     // Once there, have a initially asks the user the user what mode they would like to be in RADIANS or DEGREES
     // Moreover, ask create a keyword, similar to "quit", that can bring up this options maybe "trigMode"
     // Anyway, then continue regularly like we did for the simple math, inputs etc
-
     //used to check whether input needs to be converted or not
     public static boolean toTrigModeForUser(String ans){
         boolean trigMode = false;
