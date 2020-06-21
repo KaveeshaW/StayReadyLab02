@@ -22,12 +22,14 @@ public class SciCalculator
         System.out.println(calc.getDisplayValue());
 
         Scanner userChoice = new Scanner(System.in);
+        int count = 0;
+        int numInput = 0;
+        int [] userNumArr = new int [4];
 
-        //1. add while loop
+        System.out.println("Please enter a command name.");
         //hasNext checks to see if there is any input
         while(userChoice.hasNext()) {
-            System.out.println("Please enter a command: ");
-
+            
             //first gets the method name, then the inputted numbers
             String method = userChoice.next();
             
@@ -35,37 +37,58 @@ public class SciCalculator
                 System.out.println("Have a nice day!!!");
                 break;
             }
-
-            double userNumber = userChoice.nextDouble();
             
-            System.out.println("userInput: " + userNumber);
-            System.out.println("method: " + method);
+            System.out.println("How many numbers are you going to input?");
+            numInput = userChoice.nextInt();
+            System.out.println("Enter the inputs one at a time, then press enter");
+            
+            for(int i = 0; i < numInput; i++) {
+                userNumArr[i] = userChoice.nextInt();
+            }
+            
+            // System.out.println("userInput: " + userNumber);
+            // System.out.println("method: " + method);
+            
 
             //2. call functions with if statements
             if(method.equals("add")) {
-                double addition = calc.alu.add(userNumber, calc.displayValue);
+                double addition = calc.alu.add( userNumArr[0], calc.displayValue);
                 calc.setDisplayValue(addition);
-                System.out.println(calc.getDisplayValue());
+                System.out.println("After performing add, we get: " + calc.getDisplayValue());
             }
             else if(method.equals("subtract")) {
-                double subtraction = calc.alu.subtract(userNumber, calc.displayValue);
+                double subtraction = calc.alu.subtract(userNumArr[0], calc.displayValue);
                 calc.setDisplayValue(subtraction);
-                System.out.println(calc.getDisplayValue());
+                System.out.println("After performing subtract, we get: " + calc.getDisplayValue());
             }
             else if(method.equals("multiply")) {
-                double multiply = calc.alu.multiply(userNumber, calc.displayValue);
+                double multiply = calc.alu.multiply(userNumArr[0], calc.displayValue);
                 calc.setDisplayValue(multiply);
-                System.out.println(calc.getDisplayValue());
+                System.out.println("After performing multiply, we get: " + calc.getDisplayValue());
             }
             else if(method.equals("divide")) {
-                double divide = calc.alu.divide(userNumber, calc.displayValue);
+                double divide = calc.alu.divide(userNumArr[0], calc.displayValue);
                 calc.setDisplayValue(divide);
-                System.out.println(calc.getDisplayValue());
-            }       
+                System.out.println("After performing divide, we get: " + calc.getDisplayValue());
+            }
+            else if(method.equals("computeHyp")) {
+                double hyp = calc.alu.computeHypotenus(userNumArr[0], userNumArr[1]);
+                calc.setDisplayValue(hyp);
+                System.out.println("After performing computeHypotenus, we get: " + calc.getDisplayValue());
+            }  
+            else if(method.equals("Trig")) {
+                
+            }
+
+            System.out.println("Please enter a command: ");
         }
         //do not want leaks in memory because the resource is not closed
         userChoice.close();
 }
+// Prompt user to enter Trig Method (Settng)
+// Once there, have a initially asks the user the user what mode they would like to be in RADIANS or DEGREES
+// Moreover, ask create a keyword, similar to "quit", that can bring up this options maybe "trigMode"
+// Anyway, then continue regularly like we did for the simple math, inputs etc
 
     //constructor
     public SciCalculator() {

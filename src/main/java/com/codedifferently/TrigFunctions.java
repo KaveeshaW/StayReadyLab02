@@ -12,7 +12,6 @@ public class TrigFunctions {
         double newValue = trigFunctions.inverseSine(displayValue);
         System.out.println(newValue);
         unit.setDisplayValue(newValue);
-        double actualResult = unit.getDisplayValue();
     }
 
     public double sine(double display){
