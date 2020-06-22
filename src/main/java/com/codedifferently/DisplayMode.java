@@ -16,6 +16,8 @@ public class DisplayMode {
     public void switchDisplayMode() {
 
         String currentMode = whichMode;
+
+
         if(currentMode.equals("decimal")) {
             whichMode = "hexadecimal";
         }
@@ -35,7 +37,7 @@ public class DisplayMode {
         //if the user input does not equal any of these modes, then tell the user to try again
         //negate all of them because if any of them is true, then the value should turn false, and it should go to the else statement
         if(!(mode.toLowerCase().equals("decimal") || mode.toLowerCase().equals("hexadecimal") || mode.toLowerCase().equals("binary") || mode.toLowerCase().equals("octal"))) {
-            System.out.println("This is not a mode. Call 'calcmode' and try again.");
+            System.out.println("This is not a mode. Call 'mode' and try again.");
         }
         else{
             this.whichMode = mode;

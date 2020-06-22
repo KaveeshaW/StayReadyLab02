@@ -69,7 +69,7 @@ public class Arithmetic {
         if(Math.pow(b, 2) - (4.0 * a * c) < 0.0) {
             System.out.println();
             System.out.println("Cannot take the square root of a negative number (after computing the top half under the square root).");
-            System.out.println("(4 times a times c are bigger than the square of b). ");
+            System.out.println("(4 times " + a + " times " + c +  " is bigger than the square of " + b + "). ");
             System.out.println("Returning back the original value before the function call.");
             System.out.println();
             return amountAlready;

@@ -82,10 +82,23 @@ public class SciCalculator
                 }
             }  
             
-            if(method.toLowerCase().equals("calcmode")){
-                System.out.println("The order of modes are 'decimal', 'hexadecimal', 'binary', 'octal' \nPlease enter the mode that you would like.");
-                calc.displayMode.switchDisplayMode(userChoice.next());
-                System.out.println("Your display mode is: " + calc.displayMode.getMode()); 
+            if(method.toLowerCase().equals("mode")){
+                System.out.print("Would you like to manually switch modes or have the calculator do so automatically? \nEnter 'manual' or 'auto'\n" );
+                System.out.println("The order of modes are 'decimal', 'hexadecimal', 'binary', 'octal'");
+                String manualOrAuto = userChoice.next();
+                manualOrAuto = manualOrAuto.toLowerCase();
+                if(manualOrAuto.equals("auto")){
+                    calc.displayMode.switchDisplayMode();
+                    System.out.println("Your display mode is now: " + calc.displayMode.getMode());
+                }
+                else if(manualOrAuto.equals("manual")){
+                    System.out.println("Please enter the mode that you would like.");
+                    calc.displayMode.switchDisplayMode(userChoice.next());
+                    System.out.println("Your display mode is now: " + calc.displayMode.getMode()); 
+                }   
+                else{
+                    System.out.println("The input that you have entered does not exist. Call 'mode' and try again. ");
+                }
                 System.out.println("Please enter a command. To quit, type 'quit'. To get a list of function names, type 'help'.");
                 continue;
             }
@@ -336,7 +349,8 @@ public class SciCalculator
         this.map.put("m+", 0);
         this.map.put("mc", 0);
         this.map.put("mrc", 0);
-        //this.map.put("calcmode", 0);
+        this.map.put("mode", 0);
+        this.map.put("trig", 0);
     }
 
     public void fillDescriptions(HashMap <String, String> descriptions) {
@@ -361,7 +375,8 @@ public class SciCalculator
         this.descriptions.put("m+", "Takes in 0 parameters. Add the currently displayed value to the value in memory (store in memory and update display) *");
         this.descriptions.put("mc", "Reset memory *");
         this.descriptions.put("mrc", "Recall the current value from memory to the display *");
-        //this.descriptions.put("calcmode", "idk for now");
+        this.descriptions.put("mode", "let's user go to mode functions, which you can manually display or let it automatically do it for you");
+        this.descriptions.put("trig", "allows access to different trig methods");
     }
 
     //gets the user's inputted numbers

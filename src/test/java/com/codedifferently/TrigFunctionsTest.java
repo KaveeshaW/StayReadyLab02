@@ -120,4 +120,18 @@ public class TrigFunctionsTest {
         //then
         Assert.assertEquals(expectedResult, actualResult, 0.01);
     }
+
+    @Test
+    public void isValNaNTest() {
+        //given
+        boolean expectedResult = true;
+
+        //when
+        SciCalculator calc = new SciCalculator();
+        TrigFunctions trigFunctions = new TrigFunctions();
+        boolean actualResult = trigFunctions.isValNaN(calc.getArithmetic().calculateExponential(5, 1235568767958.0));
+
+        //then
+        Assert.assertEquals(expectedResult, actualResult);
+    }
 }
