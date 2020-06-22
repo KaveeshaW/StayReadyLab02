@@ -44,19 +44,23 @@ public class TrigUnitsTest {
         Assert.assertEquals(expectedValue, actualValue);
     }
 
-
-    //NEED TO FIX
     @Test
     public void switchUnitsNoArgsTest() {
         //given
-        String expectedValue = "radians";
+        //by default, the calc should be using radians, so the first time you switch you should expect degrees
+        String expectedValue = "degrees";
+        String expectedValue2 = "radians";
         
         //when
         TrigUnits units = new TrigUnits();
-        units.switchUnitsMode("radians");
+        units.switchUnitsMode();
         String actualValue = units.getMode();
+
+        units.switchUnitsMode();
+        String actualValue2 = units.getMode();
 
         //then
         Assert.assertEquals(expectedValue, actualValue);
+        Assert.assertEquals(expectedValue2, actualValue2); 
     }
 }

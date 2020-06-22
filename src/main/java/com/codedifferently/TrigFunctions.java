@@ -41,5 +41,15 @@ public class TrigFunctions {
         return inverseTangentValue;
     }
 
+    public boolean checkIfValIsNaN(double val, String method) {
+        boolean isNaN = false;
+        Double check = (Double) val;
+        if(check.isNaN()) {
+            System.out.println("Value you gave returns NaN when computing " + method + ". Overriding display value with inputted value.");
+            isNaN = true;
+        }
+        return isNaN;
+    }
+
     
 }

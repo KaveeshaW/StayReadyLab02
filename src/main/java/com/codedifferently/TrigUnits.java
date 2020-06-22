@@ -12,20 +12,19 @@ public class TrigUnits {
         return this.whichUnit;
     }
 
-    //NEED TO DO
     public void switchUnitsMode() {
-
+        if(this.whichUnit.equals("radians")) {
+            this.whichUnit = "degrees";
+        }
+        else if(this.whichUnit.equals("degrees")) {
+            this.whichUnit = "radians";
+        }
     }
 
     public void switchUnitsMode(String mode) {
         this.whichUnit = mode;
     }
 
-    // Prompt user to enter Trig Method (Settng)
-    // Once there, have a initially asks the user the user what mode they would like to be in RADIANS or DEGREES
-    // Moreover, ask create a keyword, similar to "quit", that can bring up this options maybe "trigMode"
-    // Anyway, then continue regularly like we did for the simple math, inputs etc
-    //used to check whether input needs to be converted or not
     public static boolean toTrigModeForUser(String ans){
         boolean trigMode = false;
         if(ans.toLowerCase().equals("radians")){
@@ -37,6 +36,7 @@ public class TrigUnits {
         return trigMode;
     } 
 
+    //converts input into radians
     public static double [] toTrigModeForCalc(double [] userNumArr){
         for(int i = 0; i < userNumArr.length; i++) {
             //convert to radians

@@ -61,6 +61,8 @@ public class SciCalculator
             if(method.equals("help")) {
                 calc.listAvailableCommands();
             }
+
+            
             //trig goes right into asking about degrees or radians, so we want to skip this part of the loop
             if(!method.equals("trig")) {
                 //the map does not have the method, reprompt the user
@@ -78,7 +80,15 @@ public class SciCalculator
                     System.out.println("Note that typing positive does not gaurentee getting a positive number, it just gaurentees it gives you the answer with the + sign on the top of the fraction.");
                     posOrNeg = userChoice.next();
                 }
-            }            
+            }  
+            
+            if(method.toLowerCase().equals("calcmode")){
+                System.out.println("The order of modes are 'decimal', 'hexadecimal', 'binary', 'octal' \nPlease enter the mode that you would like.");
+                calc.displayMode.switchDisplayMode(userChoice.next());
+                System.out.println("Your display mode is: " + calc.displayMode.getMode()); 
+                System.out.println("Please enter a command. To quit, type 'quit'. To get a list of function names, type 'help'.");
+                continue;
+            }
 
             //2. call functions with if statements
             if(method.equals("add")) {
@@ -254,9 +264,9 @@ public class SciCalculator
         System.out.println();
     }
     
-    public void displayError() { 
-        System.out.println("Err");  
+    public String displayError() {   
         clearDisplay();   
+        return "Error";
     }
  
     public Arithmetic getArithmetic() {
@@ -326,6 +336,7 @@ public class SciCalculator
         this.map.put("m+", 0);
         this.map.put("mc", 0);
         this.map.put("mrc", 0);
+        //this.map.put("calcmode", 0);
     }
 
     public void fillDescriptions(HashMap <String, String> descriptions) {
@@ -350,6 +361,7 @@ public class SciCalculator
         this.descriptions.put("m+", "Takes in 0 parameters. Add the currently displayed value to the value in memory (store in memory and update display) *");
         this.descriptions.put("mc", "Reset memory *");
         this.descriptions.put("mrc", "Recall the current value from memory to the display *");
+        //this.descriptions.put("calcmode", "idk for now");
     }
 
     //gets the user's inputted numbers

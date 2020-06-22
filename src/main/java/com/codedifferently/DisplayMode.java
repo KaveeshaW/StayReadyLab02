@@ -2,7 +2,6 @@ package com.codedifferently;
 
 public class DisplayMode {
     private String whichMode;
-    private final String [] MODES = {"decimal", "hexadecimal", "binary", "octal"};
 
     public static void main(String[] args) {
         DisplayMode mode = new DisplayMode();
@@ -13,59 +12,37 @@ public class DisplayMode {
     public DisplayMode() {
         whichMode = "decimal";
     }
-    
+ 
     public void switchDisplayMode() {
-        whichMode = MODES[1];
-        System.out.println(whichMode);
 
-        // Scanner userChoice = new Scanner(System.in);
-        // System.out.println("Please select a number for your display mode. /n 1 = Decimal /n 3 = Binary /n 4 = Hexadecimal /n 2 = Octal");
-        // double userInput = userChoice.nextDouble();
-        // if(userInput == 1.0) {
-        //     //Decimal
-        // }
-        // else if(userInput == 2.0) {
-        //     //set to binary
-        // } 
-        // else if  (userInput == 3.0){
-        //     //set to Hexadecimal 
-        // }
-        // else if(userInput == 4.0) { 
-        //     // set to Octal
-        // }
-        
-        // String[] options = {"binary", "octal", "decimal", "decimal"};
-        // for(int counter = 0; counter <= userInput; counter++){
-        //     System.out.println(options[counter]);
-        // }
+        String currentMode = whichMode;
+        if(currentMode.equals("decimal")) {
+            whichMode = "hexadecimal";
+        }
+        if(currentMode.equals("hexadecimal")) {
+            whichMode = "binary";
+        }
+        if(currentMode.equals("binary")) {
+            whichMode = "octal";
+        }
+        if(currentMode.equals("octal")) {
+            whichMode = "decimal";
+        }
+         
     }
 
     public void switchDisplayMode(String mode) {
-        this.whichMode = mode;
+        //if the user input does not equal any of these modes, then tell the user to try again
+        //negate all of them because if any of them is true, then the value should turn false, and it should go to the else statement
+        if(!(mode.toLowerCase().equals("decimal") || mode.toLowerCase().equals("hexadecimal") || mode.toLowerCase().equals("binary") || mode.toLowerCase().equals("octal"))) {
+            System.out.println("This is not a mode. Call 'calcmode' and try again.");
+        }
+        else{
+            this.whichMode = mode;
+        }
     }
 
     public String getMode() {
         return this.whichMode;
     }
-/*
-if (method.equals("Hexadecimal")){
-    System.out.println("You are now in Hexadecimal format")
-}
-if (method.equals("Octal")){
-    System.out.println("You are now in Octal format")
-}
-if (method.equals("Decimal")){
-    System.out.println("You are now in Decimal format")'
-}
-if (method.equals("Binary")){
-    System.out.println("You are now in Binary format")
-}
-
-
-
-}
-
-
-*/
-
 }

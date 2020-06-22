@@ -62,14 +62,14 @@ public class SciCalculatorTest
     @Test
     public void displayErrorTest(){
         //Given 
-        String expectedDisplay = "Err";
+        String expectedDisplay = "Error";
 
         //when
-        //SciCalculator calc = new SciCalculator();
-        //String actualDisplay = calc.displayError();
+        SciCalculator calc = new SciCalculator();
+        String actualDisplay = calc.displayError();
 
         //then (placeholder, not actual test)
-        Assert.assertEquals(expectedDisplay , "a");
+        Assert.assertEquals(expectedDisplay , actualDisplay);
 
     }
 
@@ -130,6 +130,20 @@ public class SciCalculatorTest
 
         //then
         Assert.assertEquals(expectedValue, cosValue, 0.01);
+    }
+
+    @Test
+    public void getMemory() { 
+        //given
+        double expectedValue = 0.0; 
+
+        //when 
+        //the memory is being cleared
+        SciCalculator calc = new SciCalculator(); 
+        double actualResult = calc.getMemory().recallValue();
+
+        //then 
+        Assert.assertEquals(expectedValue, actualResult, 0.0);
     }
 
     @Test
@@ -202,20 +216,31 @@ public class SciCalculatorTest
         Assert.assertEquals(descriptionExpected, descriptionActual);
     }
 
-    /*@Test
-    public void getMemory() { 
+    @Test
+    public void doCalculationWithInputOrDisplayTest() {
         //given
-        double expectedValue = 0.0; 
+        double expectedDisplayVal = 0.0;
+        double expectedInputVal = 0.851;
 
-        //when 
-        //the memory is being cleared
-        SciCalculator calc = new SciCalculator(); 
+        //when
+        //tests the display functionality
+        SciCalculator calc = new SciCalculator();
+        //should be 0 by default
+        double [] userNumArr = new double [1];
+        //value is equal to 0.0 on the calculator
+        double returnedDisplay = calc.doCalculationWithInputOrDisplay("display", calc, "sin", userNumArr);
+        calc.setDisplayValue(returnedDisplay);
+        double actualDisplayVal = calc.getDisplayValue();
 
-        
-        //then 
-        Assert.assertEquals(expectedValue, actual);
-        
+        userNumArr[0] = 45.0;
+        System.out.println(calc.getTrigFunctions().sine(45.0));
+        double returnedInput = calc.doCalculationWithInputOrDisplay("input", calc, "sin", userNumArr);
+        calc.setDisplayValue(returnedInput);
+        double actualInputVal = calc.getDisplayValue();
 
+        //then
+        //displayFunctionality
+        Assert.assertEquals(expectedDisplayVal, actualDisplayVal, 0.01);
+        Assert.assertEquals(expectedInputVal, actualInputVal, 0.01);
     }
-        */
 }
