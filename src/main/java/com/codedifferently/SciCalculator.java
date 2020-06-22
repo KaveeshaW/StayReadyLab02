@@ -176,10 +176,31 @@ public class SciCalculator
                         userNumArr = TrigUnits.toTrigModeForCalc(userNumArr);
                     }
                     // start the if statements for the different trig functions
-                    if(trigMethod.equals("sine")) {
+                    if(trigMethod.equals("sin")) {
                         double sin = calc.trigFunctions.sine(userNumArr[0]);
                         calc.displayResult(calc, sin, "sine");
                     }
+                    else if(trigMethod.equals("cos")) {
+                        double cosine = calc.trigFunctions.cosine(userNumArr[0]);
+                        calc.displayResult(calc, cosine, "cosine");
+                    }
+                    else if(trigMethod.equals("tan")) {
+                        double tangent = calc.trigFunctions.tangent(userNumArr[0]);
+                        calc.displayResult(calc, tangent, "tangent");
+                    }
+                    else if(trigMethod.equals("invsin")) {
+                        double inverseSine = calc.trigFunctions.inverseSine(userNumArr[0]);
+                        calc.displayResult(calc, inverseSine, "inverseSine");
+                    }
+                    else if(trigMethod.equals("invcos")) {
+                        double inverseCosine = calc.trigFunctions.inverseCosine(userNumArr[0]);
+                        calc.displayResult(calc, inverseCosine, "inverseCosine");
+                    }
+                    else if(trigMethod.equals("invtan")) {
+                        double inverseTangent = calc.trigFunctions.inverseTangent(userNumArr[0]);
+                        calc.displayResult(calc, inverseTangent, "inverseTangent");
+                    }
+                    
             }
             System.out.println("Please enter a command. To quit, type 'quit'. To get a list of function names, type 'help'.");
         }
@@ -265,7 +286,12 @@ public class SciCalculator
         this.map.put("distance", 4);
         this.map.put("quad", 3);
         this.map.put("hyp", 2);
-        this.map.put("sine", 1);
+        this.map.put("sin", 1);
+        this.map.put("cos", 1);
+        this.map.put("tan", 1);
+        this.map.put("invsin", 1);
+        this.map.put("invcos", 1);
+        this.map.put("invtan", 1);
     }
 
     public void fillDescriptions(HashMap <String, String> descriptions) {
@@ -281,7 +307,12 @@ public class SciCalculator
         this.descriptions.put("distance", "Takes in 4 parameters. Uses the distance formula to find the distance between two points (x1, y1, x2, y2).");
         this.descriptions.put("quad", "Takes in 3 parameters. Uses the quadratic formula on the three inputted values (a, b, c). You can enter positive or negative to change the sign at the top of the fraction");
         this.descriptions.put("hyp", "Takes in 2 parameters. Computes the Hypotenus of the triangle based on the inputted values (a, b)");
-        this.descriptions.put("sine", "Takes in 1 parameter. Returns the sine of the inputted radians. (If you put degrees it turns into radians).");
+        this.descriptions.put("sin", "Takes in 1 parameter. Returns the sine of the inputted radians. (If you put degrees it turns into radians).");
+        this.descriptions.put("cos", "Takes in 1 parameter. Returns the cosine of the inputted radians. (If you put degrees it turns into radians).");
+        this.descriptions.put("tan", "Takes in 1 parameter. Returns the tangent of the inputted radians. (If you put degrees it turns into radians).");
+        this.descriptions.put("invsin", "Takes in 1 parameter. Returns the inverseSine of the inputted radians. (If you put degrees it turns into radians).");
+        this.descriptions.put("invcos", "Takes in 1 parameter. Returns the inverseCosine of the inputted radians. (If you put degrees it turns into radians).");
+        this.descriptions.put("invtan", "Takes in 1 parameter. Returns the inverseTangent of the inputted radians. (If you put degrees it turns into radians).");
     }
 
     //gets the user's inputted numbers
