@@ -130,8 +130,78 @@ public class SciCalculatorTest
 
         //then
         Assert.assertEquals(expectedValue, cosValue, 0.01);
- 
     }
+
+    @Test
+    public void getMapTest() {
+        //given
+        int addExpected = 1;
+
+        //when
+        //cosine of 0
+        SciCalculator calc = new SciCalculator();
+        //value is equal to 0.0 on the calculator
+        calc.instantiateMap(calc.getMap());
+        double addValue = calc.getMap().get("add");
+        //sets the display to 1.0
+        calc.setDisplayValue(addValue);
+        double addActual = calc.getDisplayValue();
+
+        //then
+        Assert.assertEquals(addExpected, addActual, 0.01);
+    }
+
+    @Test
+    public void getDescriptionsMapTest() {
+        //given
+        int addExpected = 1;
+
+        //when
+        //cosine of 0
+        SciCalculator calc = new SciCalculator();
+        //value is equal to 0.0 on the calculator
+        calc.instantiateMap(calc.getMap());
+        double addValue = calc.getMap().get("add");
+        //sets the display to 1.0
+        calc.setDisplayValue(addValue);
+        double addActual = calc.getDisplayValue();
+
+        //then
+        Assert.assertEquals(addExpected, addActual, 0.01);
+    }
+
+    @Test
+    public void instantiateMapTest() {
+        //given
+        String descriptionExpected = "Takes in 1 parameter. Adds that parameter to the current value displayed.";
+
+        //when
+        //cosine of 0
+        SciCalculator calc = new SciCalculator();
+        //value is equal to 0.0 on the calculator
+        calc.fillDescriptions(calc.getDescriptionsMap());
+        String descriptionActual = calc.getDescriptionsMap().get("add");
+
+        //then
+        Assert.assertEquals(descriptionExpected, descriptionActual);
+    }
+
+    @Test
+    public void fillDescriptionsTest() {
+        //given
+        String descriptionExpected = "Takes in 1 parameter. Adds that parameter to the current value displayed.";
+
+        //when
+        //cosine of 0
+        SciCalculator calc = new SciCalculator();
+        //value is equal to 0.0 on the calculator
+        calc.fillDescriptions(calc.getDescriptionsMap());
+        String descriptionActual = calc.getDescriptionsMap().get("add");
+
+        //then
+        Assert.assertEquals(descriptionExpected, descriptionActual);
+    }
+
     /*@Test
     public void getMemory() { 
         //given

@@ -206,19 +206,6 @@ public class SciCalculator
         System.out.println("Err");  
         clearDisplay();   
     }
-
-    //although the return type of this function is void, because I am passing a reference to the calculator object, the calculator in main will update itself
-    public void displayResult(SciCalculator calc, double result, String functionName) {
-        calc.setDisplayValue(result);
-        System.out.println("After performing " + functionName + " we get: " + calc.getDisplayValue());
-    }
-
-    public void valueNotUsedWarning(String whichMethod) {
-        System.out.println();
-        System.out.println("Note that " + whichMethod + " will not use the current value as part of the calculation.");
-        System.out.println("If an error occurred the function will just return the previous display value.");
-        System.out.println();
-    }
  
     public Arithmetic getArithmetic() {
         return this.alu;
@@ -241,6 +228,27 @@ public class SciCalculator
     }
     public Memory getMemory() {
         return this.memory;
+    }
+
+    public HashMap <String, Integer> getMap() {
+        return this.map;
+    }
+
+    public HashMap <String, String> getDescriptionsMap() {
+        return this.descriptions;
+    }
+
+    //although the return type of this function is void, because I am passing a reference to the calculator object, the calculator in main will update itself
+    public void displayResult(SciCalculator calc, double result, String functionName) {
+        calc.setDisplayValue(result);
+        System.out.println("After performing " + functionName + " we get: " + calc.getDisplayValue());
+    }
+
+    public void valueNotUsedWarning(String whichMethod) {
+        System.out.println();
+        System.out.println("Note that " + whichMethod + " will not use the current value as part of the calculation.");
+        System.out.println("If an error occurred the function will just return the previous display value.");
+        System.out.println();
     }
 
     //maps to each function how many inputs is needed to make life simpler for the user and the programmer when using the UI
