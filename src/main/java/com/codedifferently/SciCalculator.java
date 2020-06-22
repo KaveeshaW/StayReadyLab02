@@ -26,6 +26,7 @@ public class SciCalculator
         this.trigFunctions = new TrigFunctions();
         this.map = new HashMap<String, Integer>();
         this.descriptions = new HashMap<String, String>();
+        this.memory = new Memory();
     }
 
     //list function names
@@ -51,6 +52,7 @@ public class SciCalculator
             String method = userChoice.next();
             //saves typing toLowerCase for every if statement
             method = method.toLowerCase();
+            System.out.println("This is method: " + method);
             
             if(method.equals("quit")) {
                 System.out.println("Have a nice day!!!");
@@ -130,12 +132,32 @@ public class SciCalculator
                 double hyp = calc.alu.computeHypotenus(userNumArr[0], userNumArr[1]);
                 calc.displayResult(calc, hyp, "computeHypotenus");
             } 
-            //three more if statements with the names M+ MRC MC
-            // else if(method.toLowerCase().equals("M+")){ 
-            //     double newMemory = calc.memory.addMemory(calc.displayValue);
-            //     calc.setDisplayValue(newMemory);
-            //     System.out.println("After performing addMemory, we get: " + calc.getDisplayValue());
-            // } 
+            
+            // Add the currently displayed value to the value in memory (store in memory and update display) *
+            //not changing display value
+            else if(method.equals("m+")){ 
+                calc.memory.addMemory(calc.displayValue);
+                System.out.println("We have stored the value in memory. Here is the value: " + calc.memory.recallValue());
+             } 
+             //Recall the current value from memory to the display *
+             //setting the value in memory to the display value
+             else if(method.equals("mrc")){ 
+                 double memVal = calc.memory.recallValue();
+                 calc.setDisplayValue(memVal);
+                 System.out.println("After performing recallMemory, we get: " + calc.getDisplayValue());
+             }
+             // Reset memory *
+             //setting the display value to 0.0
+             else if(method.equals("mc")){ 
+                //sets the calc memory to 0.0
+                calc.memory.resetMemory();
+                //setting the display value to 0
+                calc.setDisplayValue(calc.memory.recallValue());
+                System.out.println("After performing resetMemory, we get: " + calc.getDisplayValue());
+             }
+             
+            
+             
             else if(method.toLowerCase().equals("trig")) {
                     System.out.println("Is the value that you're entering in degrees or radians? Please enter degrees or radians.");  
                     
@@ -160,16 +182,27 @@ public class SciCalculator
                     if(trigMethod.equals("help")) {
                         calc.listAvailableCommands();
                     }
+
+                    System.out.println("Do you want to use the value that is already on display or input a number?");
+                    System.out.println("Enter 'display' or 'input'");
+                    //gets whether they want to use the display number or input number
+                    String displayOrNumber = userChoice.next();
+                    //saves typing toLowerCase for every if statement
+                    displayOrNumber = displayOrNumber.toLowerCase();
                     
+                    System.out.println("displayOrNumber is: " + displayOrNumber);
+
                     //the map does not have the method, reprompt the user
-                    if(calc.map.containsKey(trigMethod) == false || method.equals("help")) {
-                        System.out.println("That method cannot be found. Please try again.");
-                        System.out.println("Please enter a command. To quit, type 'quit'. To get a list of function names, type 'help'.");
-                        continue;
-                    }
+                    if(displayOrNumber.equals("input")) {
+                        if(calc.map.containsKey(trigMethod) == false || method.equals("help")) {
+                            System.out.println("That method cannot be found. Please try again.");
+                            System.out.println("Please enter a command. To quit, type 'quit'. To get a list of function names, type 'help'.");
+                            continue;
+                        }
                     
-                    //gets the user's inputted numbers
-                    calc.getUserValues(userChoice, calc, trigMethod, userNumArr);
+                        //gets the user's inputted numbers
+                        calc.getUserValues(userChoice, calc, trigMethod, userNumArr);
+                    }
 
                     //once you get all of the inputs, if its not radians, convert
                     if(trigMode == false) {
@@ -177,7 +210,14 @@ public class SciCalculator
                     }
                     // start the if statements for the different trig functions
                     if(trigMethod.equals("sin")) {
-                        double sin = calc.trigFunctions.sine(userNumArr[0]);
+                        double sin = 0.0;
+                        System.out.println("here and the value of displayOrNumber is: " + displayOrNumber);
+                        if(displayOrNumber.equals("input")) {
+                            sin = calc.trigFunctions.sine(userNumArr[0]);
+                        }
+                        else if(displayOrNumber.equals("display")) {
+                            sin = calc.trigFunctions.sine(calc.getDisplayValue());
+                        }
                         calc.displayResult(calc, sin, "sine");
                     }
                     else if(trigMethod.equals("cos")) {
@@ -292,6 +332,9 @@ public class SciCalculator
         this.map.put("invsin", 1);
         this.map.put("invcos", 1);
         this.map.put("invtan", 1);
+        this.map.put("m+", 0);
+        this.map.put("mc", 0);
+        this.map.put("mrc", 0);
     }
 
     public void fillDescriptions(HashMap <String, String> descriptions) {
@@ -313,6 +356,9 @@ public class SciCalculator
         this.descriptions.put("invsin", "Takes in 1 parameter. Returns the inverseSine of the inputted radians. (If you put degrees it turns into radians).");
         this.descriptions.put("invcos", "Takes in 1 parameter. Returns the inverseCosine of the inputted radians. (If you put degrees it turns into radians).");
         this.descriptions.put("invtan", "Takes in 1 parameter. Returns the inverseTangent of the inputted radians. (If you put degrees it turns into radians).");
+        this.descriptions.put("m+", "Takes in 0 parameters. Add the currently displayed value to the value in memory (store in memory and update display) *");
+        this.descriptions.put("mc", "Reset memory *");
+        this.descriptions.put("mrc", "Recall the current value from memory to the display *");
     }
 
     //gets the user's inputted numbers

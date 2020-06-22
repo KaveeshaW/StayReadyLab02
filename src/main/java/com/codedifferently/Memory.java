@@ -2,6 +2,10 @@ package com.codedifferently;
 
 public class Memory {
     private double valueInMemory;
+ 
+    public Memory() {
+        this.valueInMemory = 0.0;
+    }
 
     public void addMemory(double amount) {
         this.valueInMemory = amount;
