@@ -52,7 +52,7 @@ public class SciCalculator
             String method = userChoice.next();
             //saves typing toLowerCase for every if statement
             method = method.toLowerCase();
-            System.out.println("This is method: " + method);
+            //System.out.println("This is method: " + method);
             
             if(method.equals("quit")) {
                 System.out.println("Have a nice day!!!");
@@ -64,7 +64,7 @@ public class SciCalculator
             //trig goes right into asking about degrees or radians, so we want to skip this part of the loop
             if(!method.equals("trig")) {
                 //the map does not have the method, reprompt the user
-                if(calc.map.containsKey(method) == false || method.equals("help")) {
+                if(calc.map.containsKey(method) == false) {
                     System.out.println("That method cannot be found. Please try again.");
                     System.out.println("Please enter a command. To quit, type 'quit'. To get a list of function names, type 'help'.");
                     continue;
@@ -155,9 +155,6 @@ public class SciCalculator
                 calc.setDisplayValue(calc.memory.recallValue());
                 System.out.println("After performing resetMemory, we get: " + calc.getDisplayValue());
              }
-             
-            
-             
             else if(method.toLowerCase().equals("trig")) {
                     System.out.println("Is the value that you're entering in degrees or radians? Please enter degrees or radians.");  
                     
@@ -183,6 +180,13 @@ public class SciCalculator
                         calc.listAvailableCommands();
                     }
 
+                    //the map does not have the method, reprompt the user
+                    if(calc.map.containsKey(trigMethod) == false) {
+                        System.out.println("That method cannot be found. Please try again.");
+                        System.out.println("Please enter a command. To quit, type 'quit'. To get a list of function names, type 'help'.");
+                        continue;
+                    }
+
                     System.out.println("Do you want to use the value that is already on display or input a number?");
                     System.out.println("Enter 'display' or 'input'");
                     //gets whether they want to use the display number or input number
@@ -194,12 +198,6 @@ public class SciCalculator
 
                     //the map does not have the method, reprompt the user
                     if(displayOrNumber.equals("input")) {
-                        if(calc.map.containsKey(trigMethod) == false || method.equals("help")) {
-                            System.out.println("That method cannot be found. Please try again.");
-                            System.out.println("Please enter a command. To quit, type 'quit'. To get a list of function names, type 'help'.");
-                            continue;
-                        }
-                    
                         //gets the user's inputted numbers
                         calc.getUserValues(userChoice, calc, trigMethod, userNumArr);
                     }
@@ -210,34 +208,27 @@ public class SciCalculator
                     }
                     // start the if statements for the different trig functions
                     if(trigMethod.equals("sin")) {
-                        double sin = 0.0;
-                        System.out.println("here and the value of displayOrNumber is: " + displayOrNumber);
-                        if(displayOrNumber.equals("input")) {
-                            sin = calc.trigFunctions.sine(userNumArr[0]);
-                        }
-                        else if(displayOrNumber.equals("display")) {
-                            sin = calc.trigFunctions.sine(calc.getDisplayValue());
-                        }
+                        double sin = calc.doCalculationWithInputOrDisplay(displayOrNumber, calc, trigMethod, userNumArr);
                         calc.displayResult(calc, sin, "sine");
                     }
                     else if(trigMethod.equals("cos")) {
-                        double cosine = calc.trigFunctions.cosine(userNumArr[0]);
+                        double cosine = calc.doCalculationWithInputOrDisplay(displayOrNumber, calc, trigMethod, userNumArr);
                         calc.displayResult(calc, cosine, "cosine");
                     }
                     else if(trigMethod.equals("tan")) {
-                        double tangent = calc.trigFunctions.tangent(userNumArr[0]);
+                        double tangent = calc.doCalculationWithInputOrDisplay(displayOrNumber, calc, trigMethod, userNumArr);
                         calc.displayResult(calc, tangent, "tangent");
                     }
                     else if(trigMethod.equals("invsin")) {
-                        double inverseSine = calc.trigFunctions.inverseSine(userNumArr[0]);
+                        double inverseSine = calc.doCalculationWithInputOrDisplay(displayOrNumber, calc, trigMethod, userNumArr);
                         calc.displayResult(calc, inverseSine, "inverseSine");
                     }
                     else if(trigMethod.equals("invcos")) {
-                        double inverseCosine = calc.trigFunctions.inverseCosine(userNumArr[0]);
+                        double inverseCosine = calc.doCalculationWithInputOrDisplay(displayOrNumber, calc, trigMethod, userNumArr);
                         calc.displayResult(calc, inverseCosine, "inverseCosine");
                     }
                     else if(trigMethod.equals("invtan")) {
-                        double inverseTangent = calc.trigFunctions.inverseTangent(userNumArr[0]);
+                        double inverseTangent = calc.doCalculationWithInputOrDisplay(displayOrNumber, calc, trigMethod, userNumArr);
                         calc.displayResult(calc, inverseTangent, "inverseTangent");
                     }
                     
@@ -382,6 +373,54 @@ public class SciCalculator
             System.out.println(key + ": " + description);
         }
         System.out.println();
+    }
+
+    public double doCalculationWithInputOrDisplay(String displayOrNumber, SciCalculator calc, String method, double [] userNumArr) {
+        double val = 0.0;
+        //System.out.println("here and the value of displayOrNumber is: " + displayOrNumber);
+        if(displayOrNumber.equals("input")) {
+            if(method.equals("sin")) {
+                val = calc.trigFunctions.sine(userNumArr[0]);
+            }
+            else if(method.equals("cos")) {
+                val = calc.trigFunctions.cosine(userNumArr[0]);
+            }
+            else if(method.equals("tan")) {
+                val = calc.trigFunctions.tangent(userNumArr[0]);
+            }
+            //needs to be lower case because we convert it to lower case
+            else if(method.equals("invsin")) {
+                val = calc.trigFunctions.inverseSine(userNumArr[0]);
+            }
+            else if(method.equals("invcos")) {
+                val = calc.trigFunctions.inverseCosine(userNumArr[0]);
+            }
+            else if(method.equals("invtan")) {
+                val = calc.trigFunctions.inverseTangent(userNumArr[0]);
+            }  
+        }
+        else if(displayOrNumber.equals("display")) {
+            if(method.equals("sin")) {
+                val = calc.trigFunctions.sine(calc.getDisplayValue());
+            }
+            else if(method.equals("cos")) {
+                val = calc.trigFunctions.cosine(calc.getDisplayValue());
+            }
+            else if(method.equals("tan")) {
+                val = calc.trigFunctions.tangent(calc.getDisplayValue());
+            }
+            //needs to be lower case because we convert it to lower case
+            else if(method.equals("invsin")) {
+                val = calc.trigFunctions.inverseSine(calc.getDisplayValue());
+            }
+            else if(method.equals("invcos")) {
+                val = calc.trigFunctions.inverseCosine(calc.getDisplayValue());
+            }
+            else if(method.equals("invtan")) {
+                val = calc.trigFunctions.inverseTangent(calc.getDisplayValue());
+            }
+        }
+        return val;
     }
 }
  

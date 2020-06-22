@@ -47,4 +47,25 @@ public class DisplayMode {
     public String getMode() {
         return this.whichMode;
     }
+/*
+if (method.equals("Hexadecimal")){
+    System.out.println("You are now in Hexadecimal format")
+}
+if (method.equals("Octal")){
+    System.out.println("You are now in Octal format")
+}
+if (method.equals("Decimal")){
+    System.out.println("You are now in Decimal format")'
+}
+if (method.equals("Binary")){
+    System.out.println("You are now in Binary format")
+}
+
+
+
+}
+
+
+*/
+
 }
