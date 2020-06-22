@@ -15,6 +15,7 @@ public class SciCalculator
     private TrigFunctions trigFunctions;
     private Memory memory;
     private HashMap <String, Integer> map;
+    private HashMap <String, String> descriptions;
 
     //constructor
     public SciCalculator() {
@@ -24,6 +25,7 @@ public class SciCalculator
         this.trigUnits = new TrigUnits();
         this.trigFunctions = new TrigFunctions();
         this.map = new HashMap<String, Integer>();
+        this.descriptions = new HashMap<String, String>();
     }
 
     //list function names
@@ -32,6 +34,7 @@ public class SciCalculator
     {
         SciCalculator calc = new SciCalculator();
         calc.instantiateMap(calc.map);
+        calc.fillDescriptions(calc.descriptions);
         System.out.println(calc.sayHello());
         System.out.println(calc.getDisplayValue());
 
@@ -39,7 +42,7 @@ public class SciCalculator
         double [] userNumArr = new double [4];
         String posOrNeg = "";
 
-        System.out.println("Please enter a command name. To quit, type 'quit'.");
+        System.out.println("Please enter a command. To quit, type 'quit'. To get a list of function names, type 'help'.");
         //hasNext checks to see if there is any input
         while(userChoice.hasNext()) {
             
@@ -53,12 +56,15 @@ public class SciCalculator
                 System.out.println("Have a nice day!!!");
                 break;
             }
+            if(method.equals("help")) {
+                calc.listAvailableCommands();
+            }
             //trig goes right into asking about degrees or radians, so we want to skip this part of the loop
             if(!method.equals("trig")) {
                 //the map does not have the method, reprompt the user
-                if(calc.map.containsKey(method) == false) {
+                if(calc.map.containsKey(method) == false || method.equals("help")) {
                     System.out.println("That method cannot be found. Please try again.");
-                    System.out.println("Please enter a command name. To quit, type 'quit'.");
+                    System.out.println("Please enter a command. To quit, type 'quit'. To get a list of function names, type 'help'.");
                     continue;
                 }
 
@@ -151,11 +157,14 @@ public class SciCalculator
                         System.out.println("Have a nice day!!!");
                         break;
                     }
+                    if(trigMethod.equals("help")) {
+                        calc.listAvailableCommands();
+                    }
                     
                     //the map does not have the method, reprompt the user
-                    if(calc.map.containsKey(trigMethod) == false) {
+                    if(calc.map.containsKey(trigMethod) == false || method.equals("help")) {
                         System.out.println("That method cannot be found. Please try again.");
-                        System.out.println("Please enter a command name. To quit, type 'quit'.");
+                        System.out.println("Please enter a command. To quit, type 'quit'. To get a list of function names, type 'help'.");
                         continue;
                     }
                     
@@ -172,7 +181,7 @@ public class SciCalculator
                         calc.displayResult(calc, sin, "sine");
                     }
             }
-            System.out.println("Please enter a command. To quit, type 'quit'.");
+            System.out.println("Please enter a command. To quit, type 'quit'. To get a list of function names, type 'help'.");
         }
         //do not want leaks in memory because the resource is not closed
         userChoice.close();
@@ -236,7 +245,7 @@ public class SciCalculator
 
     //maps to each function how many inputs is needed to make life simpler for the user and the programmer when using the UI
     public void instantiateMap(HashMap <String, Integer> map) {
-        this.map.put("add", 1);;
+        this.map.put("add", 1);
         this.map.put("subtract", 1);
         this.map.put("multiply", 1);
         this.map.put("divide", 1);
@@ -251,6 +260,22 @@ public class SciCalculator
         this.map.put("sine", 1);
     }
 
+    public void fillDescriptions(HashMap <String, String> descriptions) {
+        this.descriptions.put("add", "Takes in 1 parameter. Adds that parameter to the current value displayed.");
+        this.descriptions.put("subtract", "Takes in 1 parameter. Subtracts that parameter from the current value displayed.");
+        this.descriptions.put("multiply", "Takes in 1 parameter. Multiplies that parameter to the current value displayed.");
+        this.descriptions.put("divide", "Takes in 1 parameter. Divides that parameter to the current value displayed.");
+        this.descriptions.put("square", "Does not take in a parameter. Squares the currently displayed value.");
+        this.descriptions.put("squareroot", "Does not take in a parameter. Takes the square root the currently displayed value.");
+        this.descriptions.put("exp", "Takes in 1 parameter. Returns the current value displayed to that power.");
+        this.descriptions.put("inverse", "Does not take in a parameter. Returns the inverse of The currently displayed value.");
+        this.descriptions.put("invert", "Does not take in a parameter. Negates the sign of the currently displayed value.");
+        this.descriptions.put("distance", "Takes in 4 parameters. Uses the distance formula to find the distance between two points (x1, y1, x2, y2).");
+        this.descriptions.put("quad", "Takes in 3 parameters. Uses the quadratic formula on the three inputted values (a, b, c). You can enter positive or negative to change the sign at the top of the fraction");
+        this.descriptions.put("hyp", "Takes in 2 parameters. Computes the Hypotenus of the triangle based on the inputted values (a, b)");
+        this.descriptions.put("sine", "Takes in 1 parameter. Returns the sine of the inputted radians. (If you put degrees it turns into radians).");
+    }
+
     //gets the user's inputted numbers
     public void getUserValues(Scanner userChoice, SciCalculator calc, String method, double [] userNumArr) {
         //tracks how many inputs one has to enter for each method to work
@@ -262,6 +287,16 @@ public class SciCalculator
         for(int i = 0; i < numInputs; i++) {
             userNumArr[i] = userChoice.nextDouble();
         }
+    }
+    
+    public void listAvailableCommands() {
+        System.out.println("The following are commands you can enter and descriptions of those commands: ");
+        for(HashMap.Entry<String, Integer> entry : this.map.entrySet()) {
+            String key = entry.getKey();
+            String description = descriptions.get(key);
+            System.out.println(key + ": " + description);
+        }
+        System.out.println();
     }
 }
  

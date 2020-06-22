@@ -7,7 +7,7 @@ public class TrigUnitsTest {
     @Test
     public void constructorTest() {
         //given
-        String expectedValue = "degrees";
+        String expectedValue = "radians";
 
         //when
         TrigUnits units = new TrigUnits();
@@ -20,7 +20,7 @@ public class TrigUnitsTest {
     @Test
     public void getModeTest() {
         //given
-        String expectedValue = "degrees";
+        String expectedValue = "radians";
         
         //when
         TrigUnits units = new TrigUnits();

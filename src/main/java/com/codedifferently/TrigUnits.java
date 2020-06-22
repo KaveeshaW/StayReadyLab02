@@ -5,7 +5,7 @@ public class TrigUnits {
     private String whichUnit;
 
     public TrigUnits() {
-        this.whichUnit = "degrees";
+        this.whichUnit = "radians";
     }
 
     public String getMode() {
