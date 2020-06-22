@@ -36,7 +36,6 @@ public class SciCalculator
         System.out.println(calc.getDisplayValue());
 
         Scanner userChoice = new Scanner(System.in);
-        double numInput = 0.0;
         double [] userNumArr = new double [4];
         String posOrNeg = "";
 
@@ -62,15 +61,9 @@ public class SciCalculator
                     System.out.println("Please enter a command name. To quit, type 'quit'.");
                     continue;
                 }
-                //tracks how many inputs one has to enter for each method to work
-                int numInputs = calc.map.get(method);
-                //if the number of inputs is zero, there is nothing to print out here, so go call the function
-                if(numInputs != 0) {
-                    System.out.println("Enter " + numInputs + " input(s) one at a time, then press enter"); 
-                }
-                for(int i = 0; i < numInputs; i++) {
-                    userNumArr[i] = userChoice.nextDouble();
-                }
+
+                //gets the user's inputted numbers
+                calc.getUserValues(userChoice, calc, method, userNumArr);
                 
                 if(method.toLowerCase().equals("quad")) {
                     System.out.println("Do you want the positive or negative value? Type positive (can also just type 'pos') or negative (can also just type 'neg').");
@@ -159,29 +152,15 @@ public class SciCalculator
                         break;
                     }
                     
-                    // System.out.println("How many numbers are you going to input?");
-                    // numInput = userChoice.nextDouble();
-                    // System.out.println("Enter the inputs one at a time, then press enter");
-                    
-                    // for(int i = 0; i < numInput; i++) {
-                    //     userNumArr[i] = userChoice.nextDouble();
-                    // }
-
                     //the map does not have the method, reprompt the user
                     if(calc.map.containsKey(trigMethod) == false) {
                         System.out.println("That method cannot be found. Please try again.");
                         System.out.println("Please enter a command name. To quit, type 'quit'.");
                         continue;
                     }
-                    //tracks how many inputs one has to enter for each method to work
-                    int numInputs = calc.map.get(trigMethod);
-                    //if the number of inputs is zero, there is nothing to print out here, so go call the function
-                    if(numInputs != 0) {
-                        System.out.println("Enter " + numInputs + " input(s) one at a time, then press enter"); 
-                    }
-                    for(int i = 0; i < numInputs; i++) {
-                        userNumArr[i] = userChoice.nextDouble();
-                    }
+                    
+                    //gets the user's inputted numbers
+                    calc.getUserValues(userChoice, calc, trigMethod, userNumArr);
 
                     //once you get all of the inputs, if its not radians, convert
                     if(trigMode == false) {
@@ -255,7 +234,7 @@ public class SciCalculator
         return this.memory;
     }
 
-    //maps to each function how many inputs is needed to make life simpler for the user when using the UI
+    //maps to each function how many inputs is needed to make life simpler for the user and the programmer when using the UI
     public void instantiateMap(HashMap <String, Integer> map) {
         this.map.put("add", 1);;
         this.map.put("subtract", 1);
@@ -270,6 +249,19 @@ public class SciCalculator
         this.map.put("quad", 3);
         this.map.put("hyp", 2);
         this.map.put("sine", 1);
+    }
+
+    //gets the user's inputted numbers
+    public void getUserValues(Scanner userChoice, SciCalculator calc, String method, double [] userNumArr) {
+        //tracks how many inputs one has to enter for each method to work
+        int numInputs = calc.map.get(method);
+        //if the number of inputs is zero, there is nothing to print out here, so go call the function
+        if(numInputs != 0) {
+            System.out.println("Enter " + numInputs + " input(s) one at a time, then press enter"); 
+        }
+        for(int i = 0; i < numInputs; i++) {
+            userNumArr[i] = userChoice.nextDouble();
+        }
     }
 }
  
