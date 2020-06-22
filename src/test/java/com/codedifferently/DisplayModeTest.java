@@ -58,19 +58,34 @@ public class DisplayModeTest {
        Assert.assertEquals(expectedMode4, actualMode4);
    }
 
-
+   //switches from decimal to hexadecimal to binary to octal
    @Test
    public void switchDisplayModeWithArgsTest() {
        //Given 
-       String expectedMode = "hexadecimal";
+       String firstModeExpected = "hexadecimal";
+       String secondModeExpected = "binary";
+       String thirdModeExpected = "octal";
+       String fourthModeExpected = "decimal";
 
        //When
        DisplayMode mode = new DisplayMode();
        mode.switchDisplayMode("hexadecimal");
-       String actualMode = mode.getMode();
+       String firstActualMode = mode.getMode();
+
+       mode.switchDisplayMode("binary");
+       String secondActualMode = mode.getMode();
+
+       mode.switchDisplayMode("octal");
+       String thirdActualMode = mode.getMode();
+
+       mode.switchDisplayMode("decimal");
+       String fourthActualMode = mode.getMode();
 
        //Then 
-       Assert.assertEquals(expectedMode, actualMode);
+       Assert.assertEquals(firstModeExpected, firstActualMode);
+       Assert.assertEquals(secondModeExpected, secondActualMode);
+       Assert.assertEquals(thirdModeExpected, thirdActualMode);
+       Assert.assertEquals(fourthModeExpected, fourthActualMode);
    }
 
 }

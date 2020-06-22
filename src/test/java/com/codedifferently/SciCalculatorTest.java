@@ -20,7 +20,7 @@ public class SciCalculatorTest
     }
 
     @Test
-    public void getDisplayTest() { 
+    public void getDisplayValueTest() { 
         //Given
         double expectedDisplay = 0.0;
         
@@ -33,7 +33,7 @@ public class SciCalculatorTest
     }
 
     @Test
-    public void setDisplayTest() {
+    public void setDisplayValueTest() {
         // given
         double expectedDisplay = 14.3;
 
@@ -133,7 +133,7 @@ public class SciCalculatorTest
     }
 
     @Test
-    public void getMemory() { 
+    public void getMemoryTest() { 
         //given
         double expectedValue = 0.0; 
 

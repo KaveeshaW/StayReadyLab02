@@ -63,7 +63,12 @@ public class SciCalculator
             if(method.equals("help")) {
                 calc.listAvailableCommands();
             }
-
+            if(method.equals("display")){
+                System.out.println("The current value of the display is " + calc.getDisplayValue());
+            }
+            if(method.equals("clear")) {
+                calc.clearDisplay();
+            }
             
             //trig goes right into asking about degrees or radians, so we want to skip this part of the loop
             if(!method.equals("trig")) {
@@ -78,14 +83,14 @@ public class SciCalculator
                 //gets the user's inputted numbers
                 calc.getUserValues(userChoice, calc, method, userNumArr);
                 
-                if(method.toLowerCase().equals("quad")) {
+                if(method.equals("quad")) {
                     System.out.println("Do you want the positive or negative value? Type positive (can also just type 'pos') or negative (can also just type 'neg').");
                     System.out.println("Note that typing positive does not gaurentee getting a positive number, it just gaurentees it gives you the answer with the + sign on the top of the fraction.");
                     posOrNeg = userChoice.next();
                 }
             }  
             
-            if(method.toLowerCase().equals("mode")){
+            if(method.equals("mode")){
                 System.out.print("Would you like to manually switch modes or have the calculator do so automatically? \nEnter 'manual' or 'auto'\n" );
                 System.out.println("The order of modes are 'decimal', 'hexadecimal', 'binary', 'octal'");
                 String manualOrAuto = userChoice.next();
@@ -182,7 +187,7 @@ public class SciCalculator
                 calc.setDisplayValue(calc.memory.recallValue());
                 System.out.println("After performing resetMemory, we get: " + calc.getDisplayValue());
              }
-            else if(method.toLowerCase().equals("trig")) {
+            else if(method.equals("trig")) {
                     System.out.println("Is the value that you're entering in degrees or radians? Please enter degrees or radians.");  
                     
                     //takes in whether it is degrees or radians, .next() takes in the next string
@@ -279,6 +284,7 @@ public class SciCalculator
 
     public void clearDisplay() { 
         this.displayValue = 0.0; 
+        System.out.println("The current value of the display is: " + this.displayValue);
         System.out.println();
     }
     
@@ -356,6 +362,9 @@ public class SciCalculator
         this.map.put("mrc", 0);
         this.map.put("mode", 0);
         this.map.put("trig", 0);
+        this.map.put("help", 0);
+        this.map.put("display", 0);
+        this.map.put("clear", 0);
     }
 
     public void fillDescriptions(HashMap <String, String> descriptions) {
@@ -382,6 +391,9 @@ public class SciCalculator
         this.descriptions.put("mrc", "Recall the current value from memory to the display *");
         this.descriptions.put("mode", "let's user go to mode functions, which you can manually display or let it automatically do it for you");
         this.descriptions.put("trig", "allows access to different trig methods");
+        this.descriptions.put("help", "lists the commads");
+        this.descriptions.put("display", "get's the display");
+        this.descriptions.put("clear", "clears the display, makes the display value equal to 0.0, displays the value");
     }
 
     //gets the user's inputted numbers
