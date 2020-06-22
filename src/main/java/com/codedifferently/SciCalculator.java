@@ -68,6 +68,7 @@ public class SciCalculator
                 //the map does not have the method, reprompt the user
                 if(calc.map.containsKey(method) == false) {
                     System.out.println("That method cannot be found. Please try again.");
+                    //otherwise, the program will not print out anything, confusing the user
                     System.out.println("Please enter a command. To quit, type 'quit'. To get a list of function names, type 'help'.");
                     continue;
                 }
@@ -99,6 +100,7 @@ public class SciCalculator
                 else{
                     System.out.println("The input that you have entered does not exist. Call 'mode' and try again. ");
                 }
+                //otherwise, the program will not print out anything, confusing the user
                 System.out.println("Please enter a command. To quit, type 'quit'. To get a list of function names, type 'help'.");
                 continue;
             }
@@ -206,6 +208,7 @@ public class SciCalculator
                     //the map does not have the method, reprompt the user
                     if(calc.map.containsKey(trigMethod) == false) {
                         System.out.println("That method cannot be found. Please try again.");
+                        //otherwise, the program will not print out anything, confusing the user
                         System.out.println("Please enter a command. To quit, type 'quit'. To get a list of function names, type 'help'.");
                         continue;
                     }

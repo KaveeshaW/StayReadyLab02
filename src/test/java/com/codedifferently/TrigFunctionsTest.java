@@ -129,7 +129,7 @@ public class TrigFunctionsTest {
         //when
         SciCalculator calc = new SciCalculator();
         TrigFunctions trigFunctions = new TrigFunctions();
-        boolean actualResult = trigFunctions.isValNaN(calc.getArithmetic().calculateExponential(5, 1235568767958.0));
+        boolean actualResult = trigFunctions.isValNaN(calc.getTrigFunctions().inverseSine(1235568767958.0));
 
         //then
         Assert.assertEquals(expectedResult, actualResult);
