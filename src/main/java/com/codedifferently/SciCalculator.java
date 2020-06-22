@@ -18,6 +18,7 @@ public class SciCalculator
     private HashMap <String, String> descriptions;
 
     //constructor
+    //need to instantiate these variables otherwise functions will unexpectedly return null pointer exceptions
     public SciCalculator() {
         this.displayValue = 0.0;
         this.alu = new Arithmetic();
@@ -40,6 +41,7 @@ public class SciCalculator
         System.out.println(calc.getDisplayValue());
 
         Scanner userChoice = new Scanner(System.in);
+        //the maximum amount of inputs is 4
         double [] userNumArr = new double [4];
         String posOrNeg = "";
 
