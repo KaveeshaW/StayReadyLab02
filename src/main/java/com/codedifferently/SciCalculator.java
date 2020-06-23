@@ -223,14 +223,14 @@ public class SciCalculator
                     System.out.println("Do you want to use the value that is already on display or input a number?");
                     System.out.println("Enter 'display' or 'input'");
                     //gets whether they want to use the display number or input number
-                    String displayOrNumber = userChoice.next();
+                    String displayOrInput = userChoice.next();
                     //saves typing toLowerCase for every if statement
-                    displayOrNumber = displayOrNumber.toLowerCase();
+                    displayOrInput = displayOrInput.toLowerCase();
                     
-                    System.out.println("displayOrNumber is: " + displayOrNumber);
+                    //System.out.println("displayOrInput is: " + displayOrInput);
 
                     //the map does not have the method, reprompt the user
-                    if(displayOrNumber.equals("input")) {
+                    if(displayOrInput.equals("input")) {
                         //gets the user's inputted numbers
                         calc.getUserValues(userChoice, calc, trigMethod, userNumArr);
                     }
@@ -241,27 +241,27 @@ public class SciCalculator
                     }
                     // start the if statements for the different trig functions
                     if(trigMethod.equals("sin")) {
-                        double sin = calc.doCalculationWithInputOrDisplay(displayOrNumber, calc, trigMethod, userNumArr);
+                        double sin = calc.doCalculationWithInputOrDisplay(displayOrInput, calc, trigMethod, userNumArr);
                         calc.displayResult(calc, sin, "sine");
                     }
                     else if(trigMethod.equals("cos")) {
-                        double cosine = calc.doCalculationWithInputOrDisplay(displayOrNumber, calc, trigMethod, userNumArr);
+                        double cosine = calc.doCalculationWithInputOrDisplay(displayOrInput, calc, trigMethod, userNumArr);
                         calc.displayResult(calc, cosine, "cosine");
                     }
                     else if(trigMethod.equals("tan")) {
-                        double tangent = calc.doCalculationWithInputOrDisplay(displayOrNumber, calc, trigMethod, userNumArr);
+                        double tangent = calc.doCalculationWithInputOrDisplay(displayOrInput, calc, trigMethod, userNumArr);
                         calc.displayResult(calc, tangent, "tangent");
                     }
                     else if(trigMethod.equals("invsin")) {
-                        double inverseSine = calc.doCalculationWithInputOrDisplay(displayOrNumber, calc, trigMethod, userNumArr);
+                        double inverseSine = calc.doCalculationWithInputOrDisplay(displayOrInput, calc, trigMethod, userNumArr);
                         calc.displayResult(calc, inverseSine, "inverseSine");
                     }
                     else if(trigMethod.equals("invcos")) {
-                        double inverseCosine = calc.doCalculationWithInputOrDisplay(displayOrNumber, calc, trigMethod, userNumArr);
+                        double inverseCosine = calc.doCalculationWithInputOrDisplay(displayOrInput, calc, trigMethod, userNumArr);
                         calc.displayResult(calc, inverseCosine, "inverseCosine");
                     }
                     else if(trigMethod.equals("invtan")) {
-                        double inverseTangent = calc.doCalculationWithInputOrDisplay(displayOrNumber, calc, trigMethod, userNumArr);
+                        double inverseTangent = calc.doCalculationWithInputOrDisplay(displayOrInput, calc, trigMethod, userNumArr);
                         calc.displayResult(calc, inverseTangent, "inverseTangent");
                     }
                     
@@ -419,10 +419,10 @@ public class SciCalculator
         System.out.println();
     }
 
-    public double doCalculationWithInputOrDisplay(String displayOrNumber, SciCalculator calc, String method, double [] userNumArr) {
+    public double doCalculationWithInputOrDisplay(String displayOrInput, SciCalculator calc, String method, double [] userNumArr) {
         double val = 0.0;
-        //System.out.println("here and the value of displayOrNumber is: " + displayOrNumber);
-        if(displayOrNumber.equals("input")) {
+        //System.out.println("here and the value of displayOrInput is: " + displayOrInput);
+        if(displayOrInput.equals("input")) {
             if(method.equals("sin")) {
                 val = calc.trigFunctions.sine(userNumArr[0]);
             }
@@ -443,7 +443,7 @@ public class SciCalculator
                 val = calc.trigFunctions.inverseTangent(userNumArr[0]);
             }  
         }
-        else if(displayOrNumber.equals("display")) {
+        else if(displayOrInput.equals("display")) {
             if(method.equals("sin")) {
                 val = calc.trigFunctions.sine(calc.getDisplayValue());
             }
