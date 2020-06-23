@@ -214,14 +214,14 @@ public class SciCalculatorTest
     @Test
     public void fillDescriptionsTest() {
         //given
-        String descriptionExpected = "Takes in 1 parameter. Adds that parameter to the current value displayed.";
+        String descriptionExpected = "Takes in 3 parameters. Uses the quadratic formula on the three inputted values (a, b, c). You can enter positive or negative to change the sign at the top of the fraction";
 
         //when
         //cosine of 0
         SciCalculator calc = new SciCalculator();
         //value is equal to 0.0 on the calculator
         calc.fillDescriptions();
-        String descriptionActual = calc.getDescriptionsMap().get("add");
+        String descriptionActual = calc.getDescriptionsMap().get("quad");
 
         //then
         Assert.assertEquals(descriptionExpected, descriptionActual);
