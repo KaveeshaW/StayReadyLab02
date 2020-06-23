@@ -35,8 +35,8 @@ public class SciCalculator
     public static void main( String[] args )
     {
         SciCalculator calc = new SciCalculator();
-        calc.instantiateMap(calc.map);
-        calc.fillDescriptions(calc.descriptions);
+        calc.instantiateMap();
+        calc.fillDescriptions();
         System.out.println(calc.sayHello());
         System.out.println(calc.getDisplayValue());
 
@@ -338,7 +338,7 @@ public class SciCalculator
     }
 
     //maps to each function how many inputs is needed to make life simpler for the user and the programmer when using the UI
-    public void instantiateMap(HashMap <String, Integer> map) {
+    public void instantiateMap() {
         this.map.put("add", 1);
         this.map.put("subtract", 1);
         this.map.put("multiply", 1);
@@ -367,7 +367,7 @@ public class SciCalculator
         this.map.put("clear", 0);
     }
 
-    public void fillDescriptions(HashMap <String, String> descriptions) {
+    public void fillDescriptions() {
         this.descriptions.put("add", "Takes in 1 parameter. Adds that parameter to the current value displayed.");
         this.descriptions.put("subtract", "Takes in 1 parameter. Subtracts that parameter from the current value displayed.");
         this.descriptions.put("multiply", "Takes in 1 parameter. Multiplies that parameter to the current value displayed.");

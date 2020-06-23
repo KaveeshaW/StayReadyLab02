@@ -155,7 +155,7 @@ public class SciCalculatorTest
         //cosine of 0
         SciCalculator calc = new SciCalculator();
         //value is equal to 0.0 on the calculator
-        calc.instantiateMap(calc.getMap());
+        calc.instantiateMap();
         double addValue = calc.getMap().get("add");
         //sets the display to 1.0
         calc.setDisplayValue(addValue);
@@ -174,7 +174,7 @@ public class SciCalculatorTest
         //cosine of 0
         SciCalculator calc = new SciCalculator();
         //value is equal to 0.0 on the calculator
-        calc.instantiateMap(calc.getMap());
+        calc.instantiateMap();
         double addValue = calc.getMap().get("add");
         //sets the display to 1.0
         calc.setDisplayValue(addValue);
@@ -193,7 +193,7 @@ public class SciCalculatorTest
         //cosine of 0
         SciCalculator calc = new SciCalculator();
         //value is equal to 0.0 on the calculator
-        calc.fillDescriptions(calc.getDescriptionsMap());
+        calc.fillDescriptions();
         String descriptionActual = calc.getDescriptionsMap().get("add");
 
         //then
@@ -209,7 +209,7 @@ public class SciCalculatorTest
         //cosine of 0
         SciCalculator calc = new SciCalculator();
         //value is equal to 0.0 on the calculator
-        calc.fillDescriptions(calc.getDescriptionsMap());
+        calc.fillDescriptions();
         String descriptionActual = calc.getDescriptionsMap().get("add");
 
         //then
