@@ -168,14 +168,15 @@ public class SciCalculatorTest
     @Test
     public void getDescriptionsMapTest() {
         //given
-        String addDescriptionExpected = "Takes in 1 parameter. Adds that parameter to the current value displayed.";
+        //since everything is basically a string, I'm just going to test one of them
+        String addDescriptionExpected = "Takes in 4 parameters. Uses the distance formula to find the distance between two points (x1, y1, x2, y2).";
 
         //when
         //cosine of 0
         SciCalculator calc = new SciCalculator();
         //makes sure that the descriptions hashmap has a value
         calc.fillDescriptions();
-        String addDescriptionActual = calc.getDescriptionsMap().get("add");
+        String addDescriptionActual = calc.getDescriptionsMap().get("distance");
 
         //then
         Assert.assertEquals(addDescriptionExpected, addDescriptionActual);
@@ -184,17 +185,30 @@ public class SciCalculatorTest
     @Test
     public void instantiateMapTest() {
         //given
-        String descriptionExpected = "Takes in 1 parameter. Adds that parameter to the current value displayed.";
+        //testing all of the different numbers that can be outputted from the map
+        int valExpected = 0;
+        int valExpected2 = 1;
+        int valExpected3 = 2;
+        int valExpected4 = 3;
+        int valExpected5 = 4;
 
         //when
         //cosine of 0
         SciCalculator calc = new SciCalculator();
         //value is equal to 0.0 on the calculator
-        calc.fillDescriptions();
-        String descriptionActual = calc.getDescriptionsMap().get("add");
+        calc.instantiateMap();
+        int valActual = calc.getMap().get("square");
+        int valActual2 = calc.getMap().get("exp");
+        int valActual3 = calc.getMap().get("hyp");
+        int valActual4 = calc.getMap().get("quad");
+        int valActual5 = calc.getMap().get("distance");
 
         //then
-        Assert.assertEquals(descriptionExpected, descriptionActual);
+        Assert.assertEquals(valExpected, valActual);
+        Assert.assertEquals(valExpected2, valActual2);
+        Assert.assertEquals(valExpected3, valActual3);
+        Assert.assertEquals(valExpected4, valActual4);
+        Assert.assertEquals(valExpected5, valActual5);
     }
 
     @Test
