@@ -4,6 +4,19 @@ import org.junit.*;
 
 public class MemoryTest {
     @Test
+    public void memoryConstructorTest() {
+          //given
+          double expectedVal = 0.0;
+
+          //when
+          Memory mem = new Memory();
+          double actualVal = mem.recallValue();
+
+          //then
+          Assert.assertEquals(expectedVal, actualVal, 0.01);
+    } 
+
+    @Test
     public void addMemoryTest() {
          //given
          double expectedResult = 153.4;
