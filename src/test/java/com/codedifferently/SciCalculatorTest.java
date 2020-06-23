@@ -7,7 +7,7 @@ import org.junit.Test;
 public class SciCalculatorTest 
 { 
     @Test
-    public void constructorTest() {
+    public void constructorSciCalculatorTest() {
         // Given
         double expectedDisplay = 0.0;
 
