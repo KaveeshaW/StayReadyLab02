@@ -168,20 +168,17 @@ public class SciCalculatorTest
     @Test
     public void getDescriptionsMapTest() {
         //given
-        int addExpected = 1;
+        String addDescriptionExpected = "Takes in 1 parameter. Adds that parameter to the current value displayed.";
 
         //when
         //cosine of 0
         SciCalculator calc = new SciCalculator();
-        //value is equal to 0.0 on the calculator
-        calc.instantiateMap();
-        double addValue = calc.getMap().get("add");
-        //sets the display to 1.0
-        calc.setDisplayValue(addValue);
-        double addActual = calc.getDisplayValue();
+        //makes sure that the descriptions hashmap has a value
+        calc.fillDescriptions();
+        String addDescriptionActual = calc.getDescriptionsMap().get("add");
 
         //then
-        Assert.assertEquals(addExpected, addActual, 0.01);
+        Assert.assertEquals(addDescriptionExpected, addDescriptionActual);
     }
 
     @Test
