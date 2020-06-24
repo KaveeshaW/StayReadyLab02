@@ -1,6 +1,7 @@
 package com.codedifferently;
 
 import org.junit.*;
+//import java.util.*;
 
 public class SciCalculatorTest 
 { 
@@ -139,6 +140,34 @@ public class SciCalculatorTest
     }
 
     @Test
+    public void getInputErrorTest() { 
+        //given
+        boolean expectedValue = false; 
+
+        //when 
+        //calc should return the input error value, which should be false
+        boolean actualResult = calc.getInputError();
+
+        //then 
+        Assert.assertEquals(expectedValue, actualResult);
+    }
+
+    @Test
+    public void setnputErrorTest() { 
+        //given
+        boolean expectedValue = true; 
+
+        //when 
+        //inputError should be set to true
+        calc.setInputError(true);
+        boolean actualValue = calc.getInputError();
+
+        //then 
+        Assert.assertEquals(expectedValue, actualValue);
+    }
+
+
+    @Test
     public void getMapTest() {
         //given
         int addExpected = 1;
@@ -207,6 +236,20 @@ public class SciCalculatorTest
         //then
         Assert.assertEquals(descriptionExpected, descriptionActual);
     }
+
+    // @Test
+    // public void getUserValuesTest() {
+    //     //given
+    //     Scanner scanner = new Scanner(System.in);
+    //     double [] userInput = new double [4];
+    //     boolean expectedAnswer = true;
+
+    //     //when
+    //     calc.getUserValues(scanner, calc, "distance", userInput);
+    //     boolean actualAnswer =calc.getInputError();
+
+    //     Assert.assertEquals(expectedAnswer, actualAnswer);
+    // }
 
     @Test
     public void doCalculationWithInputOrDisplayTest() {

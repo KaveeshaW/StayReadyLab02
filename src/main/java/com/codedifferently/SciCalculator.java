@@ -16,6 +16,7 @@ public class SciCalculator
     private Memory memory;
     private HashMap <String, Integer> map;
     private HashMap <String, String> descriptions;
+    private boolean inputError;
 
     //constructor
     //need to instantiate these variables otherwise functions will unexpectedly return null pointer exceptions
@@ -28,6 +29,7 @@ public class SciCalculator
         this.map = new HashMap<String, Integer>();
         this.descriptions = new HashMap<String, String>();
         this.memory = new Memory();
+        this.inputError = false;
     }
 
     //list function names
@@ -48,7 +50,12 @@ public class SciCalculator
         System.out.println("Please enter a command. To quit, type 'quit'. To get a list of function names, type 'help'.");
         //hasNext checks to see if there is any input
         while(userChoice.hasNext()) {
-            
+            if(calc.getInputError() == true) {
+                //skips the error input (like a string)
+                userChoice.nextLine();
+                //sets the calc input error variable back to false
+                calc.setInputError(false);
+            }
 
             //first gets the method name, then the inputted numbers
             String method = userChoice.next();
@@ -81,9 +88,10 @@ public class SciCalculator
                 }
 
                 //gets the user's inputted numbers
+                
                 calc.getUserValues(userChoice, calc, method, userNumArr);
                 
-                if(method.equals("quad")) {
+                if(calc.inputError == false && method.equals("quad")) {
                     System.out.println("Do you want the positive or negative value? Type positive (can also just type 'pos') or negative (can also just type 'neg').");
                     System.out.println("Note that typing positive does not gaurentee getting a positive number, it just gaurentees it gives you the answer with the + sign on the top of the fraction.");
                     posOrNeg = userChoice.next();
@@ -113,19 +121,19 @@ public class SciCalculator
             }
 
             //2. call functions with if statements
-            if(method.equals("add")) {
+            if(calc.inputError == false && method.equals("add")) {
                 double addition = calc.alu.add(userNumArr[0], calc.displayValue);
                 calc.displayResult(calc, addition, "add");
             }
-            else if(method.equals("subtract")) {
+            else if(calc.inputError == false && method.equals("subtract")) {
                 double subtraction = calc.alu.subtract(userNumArr[0], calc.displayValue);
                 calc.displayResult(calc, subtraction, "subtract");
             }
-            else if(method.equals("multiply")) {
+            else if(calc.inputError == false && method.equals("multiply")) {
                 double multiply = calc.alu.multiply(userNumArr[0], calc.displayValue);
                 calc.displayResult(calc, multiply, "multiply");
             }
-            else if(method.equals("divide")) {
+            else if(calc.inputError == false && method.equals("divide")) {
                 double divide = calc.alu.divide(userNumArr[0], calc.displayValue);
                 calc.displayResult(calc, divide, "divide");
             }
@@ -137,7 +145,7 @@ public class SciCalculator
                 double squareRoot = calc.alu.calculateSquareRoot(calc.displayValue);
                 calc.displayResult(calc, squareRoot, "calculateSquareRoot");
             } 
-            else if(method.equals("exp")) {
+            else if(calc.inputError == false && method.equals("exp")) {
                 double exp = calc.alu.calculateExponential(userNumArr[0], calc.displayValue);
                 calc.displayResult(calc, exp, "calculateExponential");
             } 
@@ -149,17 +157,17 @@ public class SciCalculator
                 double invertedNum = calc.alu.invertSign(calc.displayValue);
                 calc.displayResult(calc, invertedNum, "invertSign");
             } 
-            else if(method.equals("distance")) {
+            else if(calc.inputError == false && method.equals("distance")) {
                 calc.valueNotUsedWarning("computeDistanceFormula");
                 double distance = calc.alu.computeDistanceFormula(userNumArr[0], userNumArr[1], userNumArr[2], userNumArr[3], calc.displayValue);
                 calc.displayResult(calc, distance, "computeDistanceFormula");
             }
-            else if(method.equals("quad")) {
+            else if(calc.inputError == false && method.equals("quad")) {
                 calc.valueNotUsedWarning("computeQuadraticFormula");
                 double quadResult = calc.alu.computeQuadraticFormula(userNumArr[0], userNumArr[1], userNumArr[2], posOrNeg, calc.displayValue);
                 calc.displayResult(calc, quadResult, "computeQuadraticFormula");
             }
-            else if(method.equals("hyp")) {
+            else if(calc.inputError == false && method.equals("hyp")) {
                 calc.valueNotUsedWarning("computeHypotenus");
                 double hyp = calc.alu.computeHypotenus(userNumArr[0], userNumArr[1]);
                 calc.displayResult(calc, hyp, "computeHypotenus");
@@ -309,12 +317,22 @@ public class SciCalculator
         return this.trigFunctions;
     }
 
-    public String sayHello() { 
-        return "Welcome to Kaveesha's and Gio's Calculator";
-    }
     public Memory getMemory() {
         return this.memory;
     }
+
+    public boolean getInputError() {
+        return this.inputError;
+    }
+
+    public void setInputError(boolean input) {
+        this.inputError = input;
+    }
+
+    public String sayHello() { 
+        return "Welcome to Kaveesha's and Gio's Calculator";
+    }
+    
 
     public HashMap <String, Integer> getMap() {
         return this.map;
@@ -405,7 +423,16 @@ public class SciCalculator
             System.out.println("Enter " + numInputs + " input(s) one at a time, then press enter"); 
         }
         for(int i = 0; i < numInputs; i++) {
-            userNumArr[i] = userChoice.nextDouble();
+            //otherwise the program will just crash, makes sure input is a double (or int)
+            try {
+                userNumArr[i] = userChoice.nextDouble();
+            }
+            catch(InputMismatchException ime) {
+                System.out.println("Please enter doubles (or integers). Returning display value before calling the command: " + calc.getDisplayValue());
+                calc.setInputError(true);
+                break;
+            }
+            
         }
     }
     
@@ -421,8 +448,9 @@ public class SciCalculator
 
     public double doCalculationWithInputOrDisplay(String displayOrInput, SciCalculator calc, String method, double [] userNumArr) {
         double val = 0.0;
-        //System.out.println("here and the value of displayOrInput is: " + displayOrInput);
-        if(displayOrInput.equals("input")) {
+        
+        //don't perform the calculations if the user inputted something other than a double or integer
+        if(calc.inputError == false && displayOrInput.equals("input")) {
             if(method.equals("sin")) {
                 val = calc.trigFunctions.sine(userNumArr[0]);
             }
