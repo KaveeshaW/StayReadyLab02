@@ -53,7 +53,7 @@ public class SciCalculator
             if(calc.getInputError() == true) {
                 //skips the error input (like a string)
                 userChoice.nextLine();
-                //sets the calc input error variable back to false
+                //sets the calc input error variable back to false so that the program executes normally (without error)
                 calc.setInputError(false);
             }
 
