@@ -111,6 +111,7 @@ public class TrigFunctionsTest {
         SciCalculator unit = new SciCalculator();
         TrigFunctions trigFunctions = new TrigFunctions();
 
+        //normal
         unit.setDisplayValue(0.12);
         double displayValue = unit.getDisplayValue();
         double newValue = trigFunctions.inverseTangent(displayValue);

@@ -268,7 +268,7 @@ public class ArithmeticTest {
         unit.setDisplayValue(0.0);
         double negErrorDisplayVal = unit.getDisplayValue();
         //doesn't really matter what I pass in, just want a to be 0.0 because that is what I am dividing by
-        double squareRootErrorValue = alu.computeQuadraticFormula(0.0, 6.0, 2.0, "neg", negErrorDisplayVal);
+        double squareRootErrorValue = alu.computeQuadraticFormula(7.0, 3.0, 2.0, "neg", negErrorDisplayVal);
         unit.setDisplayValue(squareRootErrorValue);
         double negSquareRootActualResult = unit.getDisplayValue();
 
