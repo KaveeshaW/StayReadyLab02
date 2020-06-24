@@ -60,4 +60,9 @@ public class MemoryTest {
          //then
          Assert.assertEquals(expectedResult, actualResult, 0.01);
     }
+
+    @After
+    public void deleteBeforeData() {
+        mem.resetMemory();
+    }
 }

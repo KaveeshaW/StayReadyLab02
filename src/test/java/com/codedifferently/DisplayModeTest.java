@@ -90,4 +90,9 @@ public class DisplayModeTest {
        Assert.assertEquals(fourthModeExpected, fourthActualMode);
    }
 
+    @After
+    public void resetData() {
+       mode.switchDisplayMode("decimal");;
+    }
+
 }

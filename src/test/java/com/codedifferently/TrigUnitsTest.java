@@ -64,4 +64,9 @@ public class TrigUnitsTest {
         Assert.assertEquals(expectedValue, actualValue);
         Assert.assertEquals(expectedValue2, actualValue2); 
     }
+
+    @After
+    public void resetData() {
+        units.switchUnitsMode("radians");
+    }
 }

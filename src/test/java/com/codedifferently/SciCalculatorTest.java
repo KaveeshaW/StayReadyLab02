@@ -2,7 +2,6 @@ package com.codedifferently;
 
 import org.junit.*;
 
-
 public class SciCalculatorTest 
 { 
     SciCalculator calc;
@@ -70,20 +69,18 @@ public class SciCalculatorTest
 
         //then (placeholder, not actual test)
         Assert.assertEquals(expectedDisplay , actualDisplay);
-
     }
 
     @Test
     public void sayHelloTest(){ 
-        //given 
-        String expectedDisplay = "Welcome to Kaveesha's and Gio's Calculator" ;
+       //given 
+       String expectedDisplay = "Welcome to Kaveesha's and Gio's Calculator" ;
 
        //when
        String actualDisplay = calc.sayHello();
 
        //then (placeholder, not actual test)
        Assert.assertEquals(expectedDisplay, actualDisplay);
-
     }
     @Test
     public void getArithmeticTest(){
@@ -117,7 +114,6 @@ public class SciCalculatorTest
         double expectedValue = 1.0; 
 
         //when
-
         //value is equal to 0.0 on the calculator
         double value = calc.getDisplayValue();
         //cosine of 0.0
@@ -183,8 +179,7 @@ public class SciCalculatorTest
         int valExpected4 = 3;
         int valExpected5 = 4;
 
-        //when
-        
+        //when    
         calc.instantiateMap();
         int valActual = calc.getMap().get("square");
         int valActual2 = calc.getMap().get("exp");
@@ -206,7 +201,6 @@ public class SciCalculatorTest
         String descriptionExpected = "Takes in 3 parameters. Uses the quadratic formula on the three inputted values (a, b, c). You can enter positive or negative to change the sign at the top of the fraction";
 
         //when
-
         calc.fillDescriptions();
         String descriptionActual = calc.getDescriptionsMap().get("quad");
 
@@ -221,7 +215,6 @@ public class SciCalculatorTest
         double expectedInputVal = 0.851;
 
         //when
-
         double [] userNumArr = new double [1];
         double returnedDisplay = calc.doCalculationWithInputOrDisplay("display", calc, "sin", userNumArr);
         calc.setDisplayValue(returnedDisplay);
@@ -237,5 +230,10 @@ public class SciCalculatorTest
         //displayFunctionality
         Assert.assertEquals(expectedDisplayVal, actualDisplayVal, 0.01);
         Assert.assertEquals(expectedInputVal, actualInputVal, 0.01);
+    }
+
+    @After
+    public void resetData() {
+        calc.setDisplayValue(0.0);
     }
 }

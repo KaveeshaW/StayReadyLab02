@@ -272,5 +272,11 @@ public class ArithmeticTest {
         //then
         Assert.assertEquals(expectedResult, actualResult, 0.01);
     }
+
+    @After
+    public void resetData() {
+        unit.setDisplayValue(0.0);
+        //don't need to reset the alu because it doesn't store any values
+    }
     
 }

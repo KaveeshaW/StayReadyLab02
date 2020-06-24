@@ -26,8 +26,6 @@ public class TrigFunctionsTest {
        
        //then
        Assert.assertEquals(expectedResult, actualResult, 0.01);
-       
-       
     }
 
     @Test
@@ -125,5 +123,11 @@ public class TrigFunctionsTest {
 
         //then
         Assert.assertEquals(expectedResult, actualResult);
+    }
+
+    @After
+    public void resetData() {
+        calc.setDisplayValue(0.0);
+        //nothing is stored in trig functions so nothing to reset
     }
 }
