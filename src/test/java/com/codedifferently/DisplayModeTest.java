@@ -3,13 +3,18 @@ package com.codedifferently;
 import org.junit.*;
 
 public class DisplayModeTest {
+    DisplayMode mode;
+    @Before
+    public void initialize() {
+       mode = new DisplayMode();
+    }
+
     @Test
     public void displayModeConstructorTest() {
          //Given 
          String expectedMode = "decimal";
 
          //When
-         DisplayMode mode = new DisplayMode();
          String actualMode = mode.getMode();
  
          //Then 
@@ -22,7 +27,6 @@ public class DisplayModeTest {
         String expectedMode = "decimal";
 
         //When
-        DisplayMode mode = new DisplayMode();
         String actualMode = mode.getMode();
 
         //Then 
@@ -38,7 +42,6 @@ public class DisplayModeTest {
        String expectedMode4 = "decimal";
 
        //When
-       DisplayMode mode = new DisplayMode();
        mode.switchDisplayMode();
        String actualMode = mode.getMode();
 
@@ -68,7 +71,6 @@ public class DisplayModeTest {
        String fourthModeExpected = "decimal";
 
        //When
-       DisplayMode mode = new DisplayMode();
        mode.switchDisplayMode("hexadecimal");
        String firstActualMode = mode.getMode();
 

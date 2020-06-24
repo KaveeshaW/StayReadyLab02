@@ -3,6 +3,11 @@ package com.codedifferently;
 import org.junit.*;
 
 public class TrigUnitsTest {
+    TrigUnits units;
+    @Before
+    public void initialize() {
+       units = new TrigUnits();
+    }
 
     @Test
     public void constructorTest() {
@@ -10,7 +15,6 @@ public class TrigUnitsTest {
         String expectedValue = "radians";
 
         //when
-        TrigUnits units = new TrigUnits();
         String actualValue = units.getMode();
 
         //then
@@ -23,7 +27,6 @@ public class TrigUnitsTest {
         String expectedValue = "radians";
         
         //when
-        TrigUnits units = new TrigUnits();
         String actualValue = units.getMode();
 
         //then
@@ -36,7 +39,6 @@ public class TrigUnitsTest {
         String expectedValue = "radians";
         
         //when
-        TrigUnits units = new TrigUnits();
         units.switchUnitsMode("radians");
         String actualValue = units.getMode();
 
@@ -52,7 +54,6 @@ public class TrigUnitsTest {
         String expectedValue2 = "radians";
         
         //when
-        TrigUnits units = new TrigUnits();
         units.switchUnitsMode();
         String actualValue = units.getMode();
 

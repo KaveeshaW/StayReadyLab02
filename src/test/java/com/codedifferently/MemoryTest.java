@@ -3,13 +3,18 @@ package com.codedifferently;
 import org.junit.*;
 
 public class MemoryTest {
+    Memory mem;
+    @Before
+    public void initialize() {
+       mem = new Memory();
+    }
+
     @Test
     public void memoryConstructorTest() {
           //given
           double expectedVal = 0.0;
 
           //when
-          Memory mem = new Memory();
           double actualVal = mem.recallValue();
 
           //then
@@ -22,8 +27,6 @@ public class MemoryTest {
          double expectedResult = 153.4;
 
          //when
-         Memory mem = new Memory();
- 
          mem.addMemory(153.4);
          double actualResult = mem.recallValue();
  
@@ -37,8 +40,6 @@ public class MemoryTest {
          double expectedResult = 190.54;
 
          //when
-         Memory mem = new Memory();
- 
          mem.addMemory(190.54);
          double actualResult = mem.recallValue();
  
@@ -52,8 +53,6 @@ public class MemoryTest {
          double expectedResult = 0.0;
 
          //when
-         Memory mem = new Memory();
- 
          mem.addMemory(190.54);
          mem.resetMemory();
          double actualResult = mem.recallValue();

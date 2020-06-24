@@ -1,19 +1,23 @@
 package com.codedifferently;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.*;
 
 
 public class SciCalculatorTest 
 { 
+    SciCalculator calc;
+    @Before
+    public void initialize() {
+       calc = new SciCalculator();
+    }
+
     @Test
     public void constructorSciCalculatorTest() {
         // Given
         double expectedDisplay = 0.0;
 
         // When
-        SciCalculator calc = new SciCalculator();
-        double  actualDisplay = calc.getDisplayValue();
+        double actualDisplay = calc.getDisplayValue();
 
         // Then
         Assert.assertEquals(expectedDisplay, actualDisplay, 0.01);
@@ -25,7 +29,6 @@ public class SciCalculatorTest
         double expectedDisplay = 0.0;
         
         //When 
-        SciCalculator calc = new SciCalculator();
         double actualDisplay = calc.getDisplayValue(); 
     
         //Then
@@ -38,7 +41,6 @@ public class SciCalculatorTest
         double expectedDisplay = 14.3;
 
         //when
-        SciCalculator calc = new SciCalculator();
         calc.setDisplayValue(14.3);
         Double actualValue = calc.getDisplayValue();    
 
@@ -52,7 +54,6 @@ public class SciCalculatorTest
         double expectedDisplay = 0.0;
 
         //When
-        SciCalculator calc = new SciCalculator();
         double actualDisplay = calc.getDisplayValue();
 
         //Then 
@@ -65,7 +66,6 @@ public class SciCalculatorTest
         String expectedDisplay = "Error";
 
         //when
-        SciCalculator calc = new SciCalculator();
         String actualDisplay = calc.displayError();
 
         //then (placeholder, not actual test)
@@ -79,7 +79,6 @@ public class SciCalculatorTest
         String expectedDisplay = "Welcome to Kaveesha's and Gio's Calculator" ;
 
        //when
-       SciCalculator calc = new SciCalculator();
        String actualDisplay = calc.sayHello();
 
        //then (placeholder, not actual test)
@@ -90,7 +89,6 @@ public class SciCalculatorTest
     public void getArithmeticTest(){
         Double expectedValue  = 5.0;
 
-        SciCalculator calc = new SciCalculator();
         Arithmetic alu = calc.getArithmetic();
         double amount = calc.getDisplayValue();
         double newAmount = alu.add(5.0, amount);
@@ -106,7 +104,6 @@ public class SciCalculatorTest
         String expectedValue  = "decimal";
 
         //when
-        SciCalculator calc = new SciCalculator();
         DisplayMode calcMode = calc.getDisplayMode();
         String actualValue = calcMode.getMode();
 
@@ -120,10 +117,10 @@ public class SciCalculatorTest
         double expectedValue = 1.0; 
 
         //when
-        //cosine of 0
-        SciCalculator calc = new SciCalculator();
+
         //value is equal to 0.0 on the calculator
         double value = calc.getDisplayValue();
+        //cosine of 0.0
         double cosValue = calc.getTrigFunctions().cosine(value);
         //sets the display to 1.0
         calc.setDisplayValue(cosValue);
@@ -139,7 +136,6 @@ public class SciCalculatorTest
 
         //when 
         //the memory is being cleared
-        SciCalculator calc = new SciCalculator(); 
         double actualResult = calc.getMemory().recallValue();
 
         //then 
@@ -152,9 +148,6 @@ public class SciCalculatorTest
         int addExpected = 1;
 
         //when
-        //cosine of 0
-        SciCalculator calc = new SciCalculator();
-        //value is equal to 0.0 on the calculator
         calc.instantiateMap();
         double addValue = calc.getMap().get("add");
         //sets the display to 1.0
@@ -172,8 +165,6 @@ public class SciCalculatorTest
         String addDescriptionExpected = "Takes in 4 parameters. Uses the distance formula to find the distance between two points (x1, y1, x2, y2).";
 
         //when
-        //cosine of 0
-        SciCalculator calc = new SciCalculator();
         //makes sure that the descriptions hashmap has a value
         calc.fillDescriptions();
         String addDescriptionActual = calc.getDescriptionsMap().get("distance");
@@ -193,9 +184,7 @@ public class SciCalculatorTest
         int valExpected5 = 4;
 
         //when
-        //cosine of 0
-        SciCalculator calc = new SciCalculator();
-        //value is equal to 0.0 on the calculator
+        
         calc.instantiateMap();
         int valActual = calc.getMap().get("square");
         int valActual2 = calc.getMap().get("exp");
@@ -217,9 +206,7 @@ public class SciCalculatorTest
         String descriptionExpected = "Takes in 3 parameters. Uses the quadratic formula on the three inputted values (a, b, c). You can enter positive or negative to change the sign at the top of the fraction";
 
         //when
-        //cosine of 0
-        SciCalculator calc = new SciCalculator();
-        //value is equal to 0.0 on the calculator
+
         calc.fillDescriptions();
         String descriptionActual = calc.getDescriptionsMap().get("quad");
 
@@ -234,11 +221,8 @@ public class SciCalculatorTest
         double expectedInputVal = 0.851;
 
         //when
-        //tests the display functionality
-        SciCalculator calc = new SciCalculator();
-        //should be 0 by default
+
         double [] userNumArr = new double [1];
-        //value is equal to 0.0 on the calculator
         double returnedDisplay = calc.doCalculationWithInputOrDisplay("display", calc, "sin", userNumArr);
         calc.setDisplayValue(returnedDisplay);
         double actualDisplayVal = calc.getDisplayValue();
