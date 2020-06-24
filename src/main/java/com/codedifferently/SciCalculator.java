@@ -50,6 +50,7 @@ public class SciCalculator
         System.out.println("Please enter a command. To quit, type 'quit'. To get a list of function names, type 'help'.");
         //hasNext checks to see if there is any input
         while(userChoice.hasNext()) {
+            //need to change back input error variable back to false so that the program can continue to execute correctly
             if(calc.getInputError() == true) {
                 //skips the error input (like a string)
                 userChoice.nextLine();
