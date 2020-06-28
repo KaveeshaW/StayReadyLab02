@@ -23,7 +23,7 @@ public class MemoryTest {
           double actualVal = mem.recallValue();
 
           //then
-          Assert.assertEquals(expectedVal, actualVal, 0.01);
+          Assert.assertEquals(expectedVal, actualVal, 0.001);
     } 
 
     @Test

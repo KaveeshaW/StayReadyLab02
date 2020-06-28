@@ -28,7 +28,7 @@ public class ArithmeticTest {
         double actualResult = unit.getDisplayValue();
 
         //then
-        Assert.assertEquals(expectedResult, actualResult, 0.01);
+        Assert.assertEquals(expectedResult, actualResult, 0.001);
     }
 
     @Test
@@ -43,7 +43,7 @@ public class ArithmeticTest {
         double actualResult = unit.getDisplayValue();
 
         //then
-        Assert.assertEquals(expectedResult, actualResult, 0.01);
+        Assert.assertEquals(expectedResult, actualResult, 0.001);
     }
 
     @Test
@@ -59,7 +59,7 @@ public class ArithmeticTest {
         double actualResult = unit.getDisplayValue();
 
         //then
-        Assert.assertEquals(expectedResult, actualResult, 0.01);
+        Assert.assertEquals(expectedResult, actualResult, 0.001);
     }
 
     @Test
@@ -83,8 +83,8 @@ public class ArithmeticTest {
         double actualDivideByZero = alu.divide(0.0, actualResult);
 
         //then
-        Assert.assertEquals(expectedResult, actualResult, 0.01);
-        Assert.assertEquals(divideByZeroExpected, actualDivideByZero, 0.01);
+        Assert.assertEquals(expectedResult, actualResult, 0.001);
+        Assert.assertEquals(divideByZeroExpected, actualDivideByZero, 0.001);
     }
 
     @Test
@@ -101,7 +101,7 @@ public class ArithmeticTest {
         double actualResult = unit.getDisplayValue();
 
         //then
-        Assert.assertEquals(expectedResult, actualResult, 0.01);
+        Assert.assertEquals(expectedResult, actualResult, 0.001);
     }
 
     @Test
@@ -128,8 +128,8 @@ public class ArithmeticTest {
         double actualNegResult = unit.getDisplayValue();
 
         //then
-        Assert.assertEquals(posExpectedResult, actualPosResult, 0.01);
-        Assert.assertEquals(negExpectedResult, actualNegResult, 0.01);
+        Assert.assertEquals(posExpectedResult, actualPosResult, 0.001);
+        Assert.assertEquals(negExpectedResult, actualNegResult, 0.001);
     }
 
     @Test
@@ -146,7 +146,7 @@ public class ArithmeticTest {
         double actualResult = unit.getDisplayValue();
 
         //then
-        Assert.assertEquals(expectedResult, actualResult, 0.01);
+        Assert.assertEquals(expectedResult, actualResult, 0.001);
     }
 
     @Test
@@ -182,9 +182,9 @@ public class ArithmeticTest {
         double actualNegResult = unit.getDisplayValue();
 
         //then
-        Assert.assertEquals(expectedPosResult, actualPosResult, 0.01);
-        Assert.assertEquals(expectedZeroInverse, actualZeroInverse, 0.01);
-        Assert.assertEquals(expectedNegResult, actualNegResult, 0.01);
+        Assert.assertEquals(expectedPosResult, actualPosResult, 0.001);
+        Assert.assertEquals(expectedZeroInverse, actualZeroInverse, 0.001);
+        Assert.assertEquals(expectedNegResult, actualNegResult, 0.001);
     }
 
     @Test
@@ -201,7 +201,7 @@ public class ArithmeticTest {
         double actualResult = unit.getDisplayValue();
 
         //then
-        Assert.assertEquals(expectedResult, actualResult, 0.01);
+        Assert.assertEquals(expectedResult, actualResult, 0.001);
     }
 
     @Test
@@ -216,7 +216,7 @@ public class ArithmeticTest {
         double actualResult = unit.getDisplayValue();
 
         //then
-        Assert.assertEquals(expectedResult, actualResult, 0.01);
+        Assert.assertEquals(expectedResult, actualResult, 0.001);
     }
 
     @Test
@@ -258,10 +258,10 @@ public class ArithmeticTest {
         double negSquareRootActualResult = unit.getDisplayValue();
 
         //then
-        Assert.assertEquals(posExpectedResult, posActualResult, 0.01);
-        Assert.assertEquals(negExpectedResult, negActualResult, 0.01);
-        Assert.assertEquals(zeroExpectedResult, zeroErrorActualResult, 0.01);
-        Assert.assertEquals(negSquareRootRes, negSquareRootActualResult, 0.01);
+        Assert.assertEquals(posExpectedResult, posActualResult, 0.001);
+        Assert.assertEquals(negExpectedResult, negActualResult, 0.001);
+        Assert.assertEquals(zeroExpectedResult, zeroErrorActualResult, 0.001);
+        Assert.assertEquals(negSquareRootRes, negSquareRootActualResult, 0.001);
     }
 
     @Test
@@ -275,7 +275,7 @@ public class ArithmeticTest {
         double actualResult = unit.getDisplayValue();
 
         //then
-        Assert.assertEquals(expectedResult, actualResult, 0.01);
+        Assert.assertEquals(expectedResult, actualResult, 0.001);
     }
 
     @After

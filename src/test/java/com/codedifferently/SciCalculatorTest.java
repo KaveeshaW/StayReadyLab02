@@ -25,7 +25,7 @@ public class SciCalculatorTest
         double actualDisplay = calc.getDisplayValue();
 
         // Then
-        Assert.assertEquals(expectedDisplay, actualDisplay, 0.01);
+        Assert.assertEquals(expectedDisplay, actualDisplay, 0.001);
     }
 
     @Test
@@ -37,7 +37,7 @@ public class SciCalculatorTest
         double actualDisplay = calc.getDisplayValue(); 
     
         //Then
-        Assert.assertEquals(expectedDisplay , actualDisplay, 0.01);
+        Assert.assertEquals(expectedDisplay , actualDisplay, 0.001);
     }
 
     @Test
@@ -50,7 +50,7 @@ public class SciCalculatorTest
         Double actualValue = calc.getDisplayValue();    
 
         //then
-        Assert.assertEquals(expectedDisplay, actualValue, 0.01);
+        Assert.assertEquals(expectedDisplay, actualValue, 0.001);
     }
 
     @Test 
@@ -62,7 +62,7 @@ public class SciCalculatorTest
         double actualDisplay = calc.getDisplayValue();
 
         //Then 
-        Assert.assertEquals(expectedDisplay , actualDisplay, 0.01);
+        Assert.assertEquals(expectedDisplay , actualDisplay, 0.001);
     }
 
     @Test
@@ -98,7 +98,7 @@ public class SciCalculatorTest
         calc.setDisplayValue(newAmount);
         double actualValue = calc.getDisplayValue();
 
-        Assert.assertEquals(expectedValue, actualValue, 0.01);
+        Assert.assertEquals(expectedValue, actualValue, 0.001);
     }
 
     @Test
@@ -128,7 +128,7 @@ public class SciCalculatorTest
         calc.setDisplayValue(cosValue);
 
         //then
-        Assert.assertEquals(expectedValue, cosValue, 0.01);
+        Assert.assertEquals(expectedValue, cosValue, 0.001);
     }
 
     @Test
@@ -185,7 +185,7 @@ public class SciCalculatorTest
         double addActual = calc.getDisplayValue();
 
         //then
-        Assert.assertEquals(addExpected, addActual, 0.01);
+        Assert.assertEquals(addExpected, addActual, 0.001);
     }
 
     @Test
@@ -276,8 +276,8 @@ public class SciCalculatorTest
 
         //then
         //displayFunctionality
-        Assert.assertEquals(expectedDisplayVal, actualDisplayVal, 0.01);
-        Assert.assertEquals(expectedInputVal, actualInputVal, 0.01);
+        Assert.assertEquals(expectedDisplayVal, actualDisplayVal, 0.001);
+        Assert.assertEquals(expectedInputVal, actualInputVal, 0.001);
     }
 
     @After

@@ -30,7 +30,7 @@ public class TrigFunctionsTest {
        double actualResult = calc.getDisplayValue();
        
        //then
-       Assert.assertEquals(expectedResult, actualResult, 0.01);
+       Assert.assertEquals(expectedResult, actualResult, 0.001);
     }
 
     @Test
@@ -46,7 +46,7 @@ public class TrigFunctionsTest {
         double actualResult = calc.getDisplayValue();
         
         //then
-        Assert.assertEquals(expectedResult, actualResult, 0.01);
+        Assert.assertEquals(expectedResult, actualResult, 0.001);
     }
 
     @Test
@@ -62,7 +62,7 @@ public class TrigFunctionsTest {
         double actualResult = calc.getDisplayValue();
         
         //then
-        Assert.assertEquals(expectedResult, actualResult, 0.01);
+        Assert.assertEquals(expectedResult, actualResult, 0.001);
         
         
     }
@@ -81,7 +81,7 @@ public class TrigFunctionsTest {
         double actualResult = calc.getDisplayValue();
 
         //then
-        Assert.assertEquals(expectedResult, actualResult, 0.01);
+        Assert.assertEquals(expectedResult, actualResult, 0.001);
     }
 
     @Test
@@ -97,7 +97,7 @@ public class TrigFunctionsTest {
         double actualResult = calc.getDisplayValue();
 
         //then
-        Assert.assertEquals(expectedResult, actualResult, 0.01);
+        Assert.assertEquals(expectedResult, actualResult, 0.001);
     }
 
     @Test
@@ -115,7 +115,7 @@ public class TrigFunctionsTest {
         double actualResult = calc.getDisplayValue();
 
         //then
-        Assert.assertEquals(expectedResult, actualResult, 0.01);
+        Assert.assertEquals(expectedResult, actualResult, 0.001);
     }
 
     @Test
