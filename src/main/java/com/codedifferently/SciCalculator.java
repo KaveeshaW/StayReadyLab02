@@ -26,9 +26,9 @@ public class SciCalculator
         this.displayMode = new DisplayMode();
         this.trigUnits = new TrigUnits();
         this.trigFunctions = new TrigFunctions();
+        this.memory = new Memory();
         this.map = new HashMap<String, Integer>();
         this.descriptions = new HashMap<String, String>();
-        this.memory = new Memory();
         this.inputError = false;
     }
 
@@ -106,12 +106,12 @@ public class SciCalculator
                 manualOrAuto = manualOrAuto.toLowerCase();
                 if(manualOrAuto.equals("auto")){
                     calc.displayMode.switchDisplayMode();
-                    System.out.println("Your display mode is now: " + calc.displayMode.getMode());
+                    System.out.println("Your display mode is now: " + calc.getDisplayMode().getMode());
                 }
                 else if(manualOrAuto.equals("manual")){
                     System.out.println("Please enter the mode that you would like.");
                     calc.displayMode.switchDisplayMode(userChoice.next());
-                    System.out.println("Your display mode is now: " + calc.displayMode.getMode()); 
+                    System.out.println("Your display mode is now: " + calc.getDisplayMode().getMode()); 
                 }   
                 else{
                     System.out.println("The input that you have entered does not exist. Call 'mode' and try again. ");
@@ -123,67 +123,67 @@ public class SciCalculator
 
             //2. call functions with if statements
             if(calc.inputError == false && method.equals("add")) {
-                double addition = calc.alu.add(userNumArr[0], calc.displayValue);
+                double addition = calc.getArithmetic().add(userNumArr[0], calc.getDisplayValue());
                 calc.displayResult(calc, addition, "add");
             }
             else if(calc.inputError == false && method.equals("subtract")) {
-                double subtraction = calc.alu.subtract(userNumArr[0], calc.displayValue);
+                double subtraction = calc.getArithmetic().subtract(userNumArr[0], calc.getDisplayValue());
                 calc.displayResult(calc, subtraction, "subtract");
             }
             else if(calc.inputError == false && method.equals("multiply")) {
-                double multiply = calc.alu.multiply(userNumArr[0], calc.displayValue);
+                double multiply = calc.getArithmetic().multiply(userNumArr[0], calc.getDisplayValue());
                 calc.displayResult(calc, multiply, "multiply");
             }
             else if(calc.inputError == false && method.equals("divide")) {
-                double divide = calc.alu.divide(userNumArr[0], calc.displayValue);
+                double divide = calc.getArithmetic().divide(userNumArr[0], calc.getDisplayValue());
                 calc.displayResult(calc, divide, "divide");
             }
             else if(method.equals("square")) {
-                double square = calc.alu.calculateSquare(calc.displayValue);
+                double square = calc.getArithmetic().calculateSquare(calc.getDisplayValue());
                 calc.displayResult(calc, square, "calculateSquare");
             }  
             else if(method.equals("squareroot")) {
-                double squareRoot = calc.alu.calculateSquareRoot(calc.displayValue);
+                double squareRoot = calc.getArithmetic().calculateSquareRoot(calc.getDisplayValue());
                 calc.displayResult(calc, squareRoot, "calculateSquareRoot");
             } 
             else if(calc.inputError == false && method.equals("exp")) {
-                double exp = calc.alu.calculateExponential(userNumArr[0], calc.displayValue);
+                double exp = calc.getArithmetic().calculateExponential(userNumArr[0], calc.getDisplayValue());
                 calc.displayResult(calc, exp, "calculateExponential");
             } 
             else if(method.equals("inverse")) {
-                double inverse = calc.alu.calculateInverse(calc.displayValue);
+                double inverse = calc.getArithmetic().calculateInverse(calc.getDisplayValue());
                 calc.displayResult(calc, inverse, "calculateInverse");
             } 
             else if(method.equals("invert")) {
-                double invertedNum = calc.alu.invertSign(calc.displayValue);
+                double invertedNum = calc.getArithmetic().invertSign(calc.getDisplayValue());
                 calc.displayResult(calc, invertedNum, "invertSign");
             } 
             else if(calc.inputError == false && method.equals("distance")) {
                 calc.valueNotUsedWarning("computeDistanceFormula");
-                double distance = calc.alu.computeDistanceFormula(userNumArr[0], userNumArr[1], userNumArr[2], userNumArr[3], calc.displayValue);
+                double distance = calc.getArithmetic().computeDistanceFormula(userNumArr[0], userNumArr[1], userNumArr[2], userNumArr[3], calc.getDisplayValue());
                 calc.displayResult(calc, distance, "computeDistanceFormula");
             }
             else if(calc.inputError == false && method.equals("quad")) {
                 calc.valueNotUsedWarning("computeQuadraticFormula");
-                double quadResult = calc.alu.computeQuadraticFormula(userNumArr[0], userNumArr[1], userNumArr[2], posOrNeg, calc.displayValue);
+                double quadResult = calc.getArithmetic().computeQuadraticFormula(userNumArr[0], userNumArr[1], userNumArr[2], posOrNeg, calc.getDisplayValue());
                 calc.displayResult(calc, quadResult, "computeQuadraticFormula");
             }
             else if(calc.inputError == false && method.equals("hyp")) {
                 calc.valueNotUsedWarning("computeHypotenus");
-                double hyp = calc.alu.computeHypotenus(userNumArr[0], userNumArr[1]);
+                double hyp = calc.getArithmetic().computeHypotenus(userNumArr[0], userNumArr[1]);
                 calc.displayResult(calc, hyp, "computeHypotenus");
             } 
             
             // Add the currently displayed value to the value in memory (store in memory and update display) *
             //not changing display value
             else if(method.equals("m+")){ 
-                calc.memory.addMemory(calc.displayValue);
-                System.out.println("We have stored the value in memory. Here is the value: " + calc.memory.recallValue());
+                calc.getMemory().addMemory(calc.getDisplayValue());
+                System.out.println("We have stored the value in memory. Here is the value: " + calc.getMemory().recallValue());
              } 
              //Recall the current value from memory to the display *
              //setting the value in memory to the display value
              else if(method.equals("mrc")){ 
-                 double memVal = calc.memory.recallValue();
+                 double memVal = calc.getMemory().recallValue();
                  calc.setDisplayValue(memVal);
                  System.out.println("After performing recallMemory, we get: " + calc.getDisplayValue());
              }
@@ -191,9 +191,9 @@ public class SciCalculator
              //setting the display value to 0.0
              else if(method.equals("mc")){ 
                 //sets the calc memory to 0.0
-                calc.memory.resetMemory();
+                calc.getMemory().resetMemory();
                 //setting the display value to 0
-                calc.setDisplayValue(calc.memory.recallValue());
+                calc.setDisplayValue(calc.getMemory().recallValue());
                 System.out.println("After performing resetMemory, we get: " + calc.getDisplayValue());
              }
             else if(method.equals("trig")) {
@@ -453,44 +453,44 @@ public class SciCalculator
         //don't perform the calculations if the user inputted something other than a double or integer
         if(calc.inputError == false && displayOrInput.equals("input")) {
             if(method.equals("sin")) {
-                val = calc.trigFunctions.sine(userNumArr[0]);
+                val = calc.getTrigFunctions().sine(userNumArr[0]);
             }
             else if(method.equals("cos")) {
-                val = calc.trigFunctions.cosine(userNumArr[0]);
+                val = calc.getTrigFunctions().cosine(userNumArr[0]);
             }
             else if(method.equals("tan")) {
-                val = calc.trigFunctions.tangent(userNumArr[0]);
+                val = calc.getTrigFunctions().tangent(userNumArr[0]);
             }
             //needs to be lower case because we convert it to lower case
             else if(method.equals("invsin")) {
-                val = calc.trigFunctions.inverseSine(userNumArr[0]);
+                val = calc.getTrigFunctions().inverseSine(userNumArr[0]);
             }
             else if(method.equals("invcos")) {
-                val = calc.trigFunctions.inverseCosine(userNumArr[0]);
+                val = calc.getTrigFunctions().inverseCosine(userNumArr[0]);
             }
             else if(method.equals("invtan")) {
-                val = calc.trigFunctions.inverseTangent(userNumArr[0]);
+                val = calc.getTrigFunctions().inverseTangent(userNumArr[0]);
             }  
         }
         else if(displayOrInput.equals("display")) {
             if(method.equals("sin")) {
-                val = calc.trigFunctions.sine(calc.getDisplayValue());
+                val = calc.getTrigFunctions().sine(calc.getDisplayValue());
             }
             else if(method.equals("cos")) {
-                val = calc.trigFunctions.cosine(calc.getDisplayValue());
+                val = calc.getTrigFunctions().cosine(calc.getDisplayValue());
             }
             else if(method.equals("tan")) {
-                val = calc.trigFunctions.tangent(calc.getDisplayValue());
+                val = calc.getTrigFunctions().tangent(calc.getDisplayValue());
             }
             //needs to be lower case because we convert it to lower case
             else if(method.equals("invsin")) {
-                val = calc.trigFunctions.inverseSine(calc.getDisplayValue());
+                val = calc.getTrigFunctions().inverseSine(calc.getDisplayValue());
             }
             else if(method.equals("invcos")) {
-                val = calc.trigFunctions.inverseCosine(calc.getDisplayValue());
+                val = calc.getTrigFunctions().inverseCosine(calc.getDisplayValue());
             }
             else if(method.equals("invtan")) {
-                val = calc.trigFunctions.inverseTangent(calc.getDisplayValue());
+                val = calc.getTrigFunctions().inverseTangent(calc.getDisplayValue());
             }
         }
         return val;
