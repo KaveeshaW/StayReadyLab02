@@ -1,10 +1,10 @@
+/**
+ * @author Kaveesha Weerasiri
+ * @author Giovane Barnes
+ */
+
 package com.codedifferently;
 import java.util.*;
-
-/**
- * Hello world!
- *
- */
 
 public class SciCalculator 
 {

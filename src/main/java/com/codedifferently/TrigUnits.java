@@ -1,3 +1,8 @@
+/**
+ * @author Kaveesha Weerasiri
+ * @author Giovane Barnes
+ */
+
 package com.codedifferently;
 
 //degrees and radians
