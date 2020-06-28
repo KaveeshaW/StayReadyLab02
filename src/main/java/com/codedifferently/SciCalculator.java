@@ -4,7 +4,10 @@
  */
 
 package com.codedifferently;
-import java.util.*;
+import java.util.Scanner;
+import java.util.HashMap;
+import java.util.InputMismatchException;
+
 
 public class SciCalculator 
 {
