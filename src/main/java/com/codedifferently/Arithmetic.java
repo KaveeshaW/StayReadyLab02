@@ -97,4 +97,13 @@ public class Arithmetic {
         return Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
     }
 
+    public double computeLog(double amountAlready) {
+        TrigFunctions trig = new TrigFunctions();
+        if(amountAlready < 0.0) {
+            System.out.println("value you entered is not applicable to log. Returing value entered into method.");
+            return amountAlready;
+        }
+        return Math.log(amountAlready);
+    }
+
 }

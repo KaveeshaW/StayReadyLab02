@@ -278,6 +278,18 @@ public class ArithmeticTest {
         Assert.assertEquals(expectedResult, actualResult, 0.001);
     }
 
+    @Test
+    public void computeLog() {
+        double expectedResult = 2.485;
+        double negExpected = -1.0;
+
+        double actualResult = alu.computeLog(12);
+        double negActual = alu.computeLog(-1.0);
+
+        Assert.assertEquals("testing log", expectedResult, actualResult, 0.001);
+        Assert.assertEquals("testing negative numbers", negExpected, negActual, 0.001);
+    }
+
     @After
     public void resetData() {
         unit.setDisplayValue(0.0);
