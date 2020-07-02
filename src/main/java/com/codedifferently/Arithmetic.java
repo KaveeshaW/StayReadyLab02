@@ -5,6 +5,9 @@
 
 package com.codedifferently;
 
+//no longer need to put Math.method, just call the method
+import static java.lang.Math.*;
+
 public class Arithmetic {
     public static void main(String[] args) {
         System.out.println("I can do many computations");
@@ -42,11 +45,11 @@ public class Arithmetic {
             System.out.println("Cannot calculate squareRoot less than 0.0. Returning back the original value before the function call.");
             return amountAlready;
         }
-        return Math.sqrt(amountAlready);
+        return sqrt(amountAlready);
     }
 
     public double calculateExponential(double exponent, double amountAlready) {
-        return Math.pow(amountAlready, exponent);
+        return pow(amountAlready, exponent);
     }
 
     public double calculateInverse(double amountAlready) {
@@ -62,7 +65,7 @@ public class Arithmetic {
     }
 
     public double computeDistanceFormula(double x1, double y1, double x2, double y2, double amountAlready) {
-        return Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
+        return sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2));
     }
 
     public double computeQuadraticFormula(double a, double b, double c, String posOrNeg, double amountAlready) {
@@ -71,7 +74,7 @@ public class Arithmetic {
             return amountAlready;
         }
         //avoiding square root returning NAN because it's trying to take the sqrt of a negative
-        if(Math.pow(b, 2) - (4.0 * a * c) < 0.0) {
+        if(pow(b, 2) - (4.0 * a * c) < 0.0) {
             System.out.println();
             System.out.println("Cannot take the square root of a negative number (after computing the top half under the square root).");
             System.out.println("(4 times " + a + " times " + c +  " is bigger than the square of " + b + "). ");
@@ -81,12 +84,12 @@ public class Arithmetic {
         }
         double newB = invertSign(b);
         if(posOrNeg.equals("positive") || posOrNeg.equals("pos")) {
-            double posTopPart = newB + Math.sqrt(Math.pow(b, 2) - (4.0 * a * c));
+            double posTopPart = newB + sqrt(pow(b, 2) - (4.0 * a * c));
             //System.out.println("This is the top part pos: " + posTopPart);
             return posTopPart / (2.0 * a);
         }
         else if(posOrNeg.equals("negative") || posOrNeg.equals("neg")) {
-            double negTopPart =  newB - Math.sqrt(Math.pow(b, 2) - (4.0 * a * c));
+            double negTopPart =  newB - sqrt(pow(b, 2) - (4.0 * a * c));
             //System.out.println("This is the top part neg: " + negTopPart);
             return negTopPart / (2.0 * a);
         }
@@ -94,16 +97,15 @@ public class Arithmetic {
     }
 
     public double computeHypotenus(double a, double b) {
-        return Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+        return sqrt(pow(a, 2) + pow(b, 2));
     }
 
     public double computeLog(double amountAlready) {
-        TrigFunctions trig = new TrigFunctions();
         if(amountAlready < 0.0) {
             System.out.println("value you entered is not applicable to log. Returing value entered into method.");
             return amountAlready;
         }
-        return Math.log(amountAlready);
+        return log(amountAlready);
     }
 
 }
