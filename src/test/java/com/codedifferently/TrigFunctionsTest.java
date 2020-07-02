@@ -124,7 +124,8 @@ public class TrigFunctionsTest {
         boolean expectedResult = true;
 
         //when
-        boolean actualResult = trigFunctions.isValNaN(calc.getTrigFunctions().inverseSine(1235568767958.0));
+        //doing integer division raises an exception, floating point division gives you NaN
+        boolean actualResult = trigFunctions.isValNaN(0.0/0);
 
         //then
         Assert.assertEquals(expectedResult, actualResult);
