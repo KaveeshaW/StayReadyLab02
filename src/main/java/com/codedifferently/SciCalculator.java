@@ -210,83 +210,82 @@ public class SciCalculator
                 System.out.println("After performing resetMemory, we get: " + calc.getDisplayValue());
              }
             else if(method.equals("trig")) {
-                    System.out.println("Is the value that you're entering in degrees or radians? Please enter degrees or radians.");  
-                    
-                    //takes in whether it is degrees or radians, .next() takes in the next string
-                    String userTrigMode = userChoice.next(); 
-                    //saves typing toLowerCase for every if statement
-                    userTrigMode = userTrigMode.toLowerCase();
+                System.out.println("Is the value that you're entering in degrees or radians? Please enter degrees or radians.");  
+                
+                //takes in whether it is degrees or radians, .next() takes in the next string
+                String userTrigMode = userChoice.next(); 
+                //saves typing toLowerCase for every if statement
+                userTrigMode = userTrigMode.toLowerCase();
 
-                    //is it degrees or radians??
-                    boolean trigMode = TrigUnits.toTrigModeForUser(userTrigMode);
+                //is it degrees or radians??
+                boolean trigMode = TrigUnits.toTrigModeForUser(userTrigMode);
 
-                    System.out.println("What trig method do you want to use?");
-                    //gets the method name i.e cos, sin, tan, etc.
-                    String trigMethod = userChoice.next();
-                    //saves typing toLowerCase for every if statement
-                    trigMethod = trigMethod.toLowerCase();
-                    
-                    if(trigMethod.equals("quit")) {
-                        System.out.println("Have a nice day!!!");
-                        break;
-                    }
-                    if(trigMethod.equals("help")) {
-                        calc.listAvailableCommands();
-                    }
+                System.out.println("What trig method do you want to use?");
+                //gets the method name i.e cos, sin, tan, etc.
+                String trigMethod = userChoice.next();
+                //saves typing toLowerCase for every if statement
+                trigMethod = trigMethod.toLowerCase();
+                
+                if(trigMethod.equals("quit")) {
+                    System.out.println("Have a nice day!!!");
+                    break;
+                }
+                if(trigMethod.equals("help")) {
+                    calc.listAvailableCommands();
+                }
 
-                    //the map does not have the method, reprompt the user
-                    if(calc.map.containsKey(trigMethod) == false) {
-                        System.out.println("That method cannot be found. Please try again.");
-                        //otherwise, the program will not print out anything, confusing the user
-                        System.out.println("Please enter a command. To quit, type 'quit'. To get a list of function names, type 'help'.");
-                        continue;
-                    }
+                //the map does not have the method, reprompt the user
+                if(calc.map.containsKey(trigMethod) == false) {
+                    System.out.println("That method cannot be found. Please try again.");
+                    //otherwise, the program will not print out anything, confusing the user
+                    System.out.println("Please enter a command. To quit, type 'quit'. To get a list of function names, type 'help'.");
+                    continue;
+                }
 
-                    System.out.println("Do you want to use the value that is already on display or input a number?");
-                    System.out.println("Enter 'display' or 'input'");
-                    //gets whether they want to use the display number or input number
-                    String displayOrInput = userChoice.next();
-                    //saves typing toLowerCase for every if statement
-                    displayOrInput = displayOrInput.toLowerCase();
-                    
-                    //System.out.println("displayOrInput is: " + displayOrInput);
+                System.out.println("Do you want to use the value that is already on display or input a number?");
+                System.out.println("Enter 'display' or 'input'");
+                //gets whether they want to use the display number or input number
+                String displayOrInput = userChoice.next();
+                //saves typing toLowerCase for every if statement
+                displayOrInput = displayOrInput.toLowerCase();
+                
+                //System.out.println("displayOrInput is: " + displayOrInput);
 
-                    //the map does not have the method, reprompt the user
-                    if(displayOrInput.equals("input")) {
-                        //gets the user's inputted numbers
-                        calc.getUserValues(userChoice, calc, trigMethod, userNumArr);
-                    }
+                //the map does not have the method, reprompt the user
+                if(displayOrInput.equals("input")) {
+                    //gets the user's inputted numbers
+                    calc.getUserValues(userChoice, calc, trigMethod, userNumArr);
+                }
 
-                    //once you get all of the inputs, if its not radians, convert
-                    if(trigMode == false) {
-                        userNumArr = TrigUnits.toTrigModeForCalc(userNumArr);
-                    }
-                    // start the if statements for the different trig functions
-                    if(trigMethod.equals("sin")) {
-                        double sin = calc.doCalculationWithInputOrDisplay(displayOrInput, calc, trigMethod, userNumArr);
-                        calc.displayResult(calc, sin, "sine");
-                    }
-                    else if(trigMethod.equals("cos")) {
-                        double cosine = calc.doCalculationWithInputOrDisplay(displayOrInput, calc, trigMethod, userNumArr);
-                        calc.displayResult(calc, cosine, "cosine");
-                    }
-                    else if(trigMethod.equals("tan")) {
-                        double tangent = calc.doCalculationWithInputOrDisplay(displayOrInput, calc, trigMethod, userNumArr);
-                        calc.displayResult(calc, tangent, "tangent");
-                    }
-                    else if(trigMethod.equals("invsin")) {
-                        double inverseSine = calc.doCalculationWithInputOrDisplay(displayOrInput, calc, trigMethod, userNumArr);
-                        calc.displayResult(calc, inverseSine, "inverseSine");
-                    }
-                    else if(trigMethod.equals("invcos")) {
-                        double inverseCosine = calc.doCalculationWithInputOrDisplay(displayOrInput, calc, trigMethod, userNumArr);
-                        calc.displayResult(calc, inverseCosine, "inverseCosine");
-                    }
-                    else if(trigMethod.equals("invtan")) {
-                        double inverseTangent = calc.doCalculationWithInputOrDisplay(displayOrInput, calc, trigMethod, userNumArr);
-                        calc.displayResult(calc, inverseTangent, "inverseTangent");
-                    }
-                    
+                //once you get all of the inputs, if its not radians, convert
+                if(trigMode == false) {
+                    userNumArr = TrigUnits.toTrigModeForCalc(userNumArr);
+                }
+                // start the if statements for the different trig functions
+                if(trigMethod.equals("sin")) {
+                    double sin = calc.doCalculationWithInputOrDisplay(displayOrInput, calc, trigMethod, userNumArr);
+                    calc.displayResult(calc, sin, "sine");
+                }
+                else if(trigMethod.equals("cos")) {
+                    double cosine = calc.doCalculationWithInputOrDisplay(displayOrInput, calc, trigMethod, userNumArr);
+                    calc.displayResult(calc, cosine, "cosine");
+                }
+                else if(trigMethod.equals("tan")) {
+                    double tangent = calc.doCalculationWithInputOrDisplay(displayOrInput, calc, trigMethod, userNumArr);
+                    calc.displayResult(calc, tangent, "tangent");
+                }
+                else if(trigMethod.equals("invsin")) {
+                    double inverseSine = calc.doCalculationWithInputOrDisplay(displayOrInput, calc, trigMethod, userNumArr);
+                    calc.displayResult(calc, inverseSine, "inverseSine");
+                }
+                else if(trigMethod.equals("invcos")) {
+                    double inverseCosine = calc.doCalculationWithInputOrDisplay(displayOrInput, calc, trigMethod, userNumArr);
+                    calc.displayResult(calc, inverseCosine, "inverseCosine");
+                }
+                else if(trigMethod.equals("invtan")) {
+                    double inverseTangent = calc.doCalculationWithInputOrDisplay(displayOrInput, calc, trigMethod, userNumArr);
+                    calc.displayResult(calc, inverseTangent, "inverseTangent");
+                }   
             }
             System.out.println("Please enter a command. To quit, type 'quit'. To get a list of function names, type 'help'.");
         }
