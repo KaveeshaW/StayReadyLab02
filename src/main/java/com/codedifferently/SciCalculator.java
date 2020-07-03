@@ -73,6 +73,7 @@ public class SciCalculator
                     break;
                 case "help":
                     calc.listAvailableCommands();
+                    break;
                 case "display":
                     System.out.println("The current value of the display is " + calc.getDisplayValue());
                     break;
@@ -80,7 +81,7 @@ public class SciCalculator
                     calc.clearDisplay();
                     break;
             }
-            //stops the program
+            //stops the program, otherwise it will keep on going. The first quit breaks out of the switch statement, this one breaks out of the while loop that runs the program
             if(method.equals("quit")) {
                 break;
             }
