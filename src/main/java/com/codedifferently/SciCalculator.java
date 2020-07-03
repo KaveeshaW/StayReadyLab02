@@ -67,7 +67,6 @@ public class SciCalculator
             method = method.toLowerCase();
             //System.out.println("This is method: " + method);
             switch(method) {
-                //need to have this first
                 case "quit":
                     System.out.println("Have a nice day!!!");
                     break;
