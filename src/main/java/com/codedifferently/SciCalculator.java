@@ -66,22 +66,27 @@ public class SciCalculator
             //saves typing toLowerCase for every if statement
             method = method.toLowerCase();
             //System.out.println("This is method: " + method);
-            
+            switch(method) {
+                //need to have this first
+                case "quit":
+                    System.out.println("Have a nice day!!!");
+                    break;
+                case "help":
+                    calc.listAvailableCommands();
+                case "display":
+                    System.out.println("The current value of the display is " + calc.getDisplayValue());
+                    break;
+                case "clear":
+                    calc.clearDisplay();
+                    break;
+            }
+            //stops the program
             if(method.equals("quit")) {
-                System.out.println("Have a nice day!!!");
                 break;
-            }
-            if(method.equals("help")) {
-                calc.listAvailableCommands();
-            }
-            if(method.equals("display")){
-                System.out.println("The current value of the display is " + calc.getDisplayValue());
-            }
-            if(method.equals("clear")) {
-                calc.clearDisplay();
             }
             
             //trig goes right into asking about degrees or radians, so we want to skip this part of the loop
+            //put outside of switch statement because it has more stuff, would be a little different
             if(!method.equals("trig")) {
                 //the map does not have the method, reprompt the user
                 if(calc.map.containsKey(method) == false) {
@@ -124,22 +129,46 @@ public class SciCalculator
                 continue;
             }
 
-            //2. call functions with if statements
-            if(calc.inputError == false && method.equals("add")) {
-                double addition = calc.getArithmetic().add(userNumArr[0], calc.getDisplayValue());
-                calc.displayResult(calc, addition, "add");
-            }
-            else if(calc.inputError == false && method.equals("subtract")) {
-                double subtraction = calc.getArithmetic().subtract(userNumArr[0], calc.getDisplayValue());
-                calc.displayResult(calc, subtraction, "subtract");
-            }
-            else if(calc.inputError == false && method.equals("multiply")) {
-                double multiply = calc.getArithmetic().multiply(userNumArr[0], calc.getDisplayValue());
-                calc.displayResult(calc, multiply, "multiply");
-            }
-            else if(calc.inputError == false && method.equals("divide")) {
-                double divide = calc.getArithmetic().divide(userNumArr[0], calc.getDisplayValue());
-                calc.displayResult(calc, divide, "divide");
+            //all of these functions take in inputs, need to make sure that they can function correctly
+            if(calc.inputError == false) {
+                switch(method) {
+                    case "add":
+                        double addition = calc.getArithmetic().add(userNumArr[0], calc.getDisplayValue());
+                        calc.displayResult(calc, addition, "add");
+                        break;
+                    case "subtract":
+                        double subtraction = calc.getArithmetic().subtract(userNumArr[0], calc.getDisplayValue());
+                        calc.displayResult(calc, subtraction, "subtract");
+                        break;
+                    case "multiply":
+                        double multiply = calc.getArithmetic().multiply(userNumArr[0], calc.getDisplayValue());
+                        calc.displayResult(calc, multiply, "multiply");
+                        break;
+                    case "divide":
+                        double divide = calc.getArithmetic().divide(userNumArr[0], calc.getDisplayValue());
+                        calc.displayResult(calc, divide, "divide");
+                        break;
+                    case "exp":
+                        double exp = calc.getArithmetic().calculateExponential(userNumArr[0], calc.getDisplayValue());
+                        calc.displayResult(calc, exp, "calculateExponential");
+                        break;
+                }
+                //has three statements so thought it should just be outside of the switch statement
+                if(method.equals("distance")) {
+                    calc.valueNotUsedWarning("computeDistanceFormula");
+                    double distance = calc.getArithmetic().computeDistanceFormula(userNumArr[0], userNumArr[1], userNumArr[2], userNumArr[3], calc.getDisplayValue());
+                    calc.displayResult(calc, distance, "computeDistanceFormula");
+                }
+                else if(method.equals("quad")) {
+                    calc.valueNotUsedWarning("computeQuadraticFormula");
+                    double quadResult = calc.getArithmetic().computeQuadraticFormula(userNumArr[0], userNumArr[1], userNumArr[2], posOrNeg, calc.getDisplayValue());
+                    calc.displayResult(calc, quadResult, "computeQuadraticFormula");
+                }
+                else if(method.equals("hyp")) {
+                    calc.valueNotUsedWarning("computeHypotenus");
+                    double hyp = calc.getArithmetic().computeHypotenus(userNumArr[0], userNumArr[1]);
+                    calc.displayResult(calc, hyp, "computeHypotenus");
+                } 
             }
             else if(method.equals("square")) {
                 double square = calc.getArithmetic().calculateSquare(calc.getDisplayValue());
@@ -149,10 +178,6 @@ public class SciCalculator
                 double squareRoot = calc.getArithmetic().calculateSquareRoot(calc.getDisplayValue());
                 calc.displayResult(calc, squareRoot, "calculateSquareRoot");
             } 
-            else if(calc.inputError == false && method.equals("exp")) {
-                double exp = calc.getArithmetic().calculateExponential(userNumArr[0], calc.getDisplayValue());
-                calc.displayResult(calc, exp, "calculateExponential");
-            } 
             else if(method.equals("inverse")) {
                 double inverse = calc.getArithmetic().calculateInverse(calc.getDisplayValue());
                 calc.displayResult(calc, inverse, "calculateInverse");
@@ -160,21 +185,6 @@ public class SciCalculator
             else if(method.equals("invert")) {
                 double invertedNum = calc.getArithmetic().invertSign(calc.getDisplayValue());
                 calc.displayResult(calc, invertedNum, "invertSign");
-            } 
-            else if(calc.inputError == false && method.equals("distance")) {
-                calc.valueNotUsedWarning("computeDistanceFormula");
-                double distance = calc.getArithmetic().computeDistanceFormula(userNumArr[0], userNumArr[1], userNumArr[2], userNumArr[3], calc.getDisplayValue());
-                calc.displayResult(calc, distance, "computeDistanceFormula");
-            }
-            else if(calc.inputError == false && method.equals("quad")) {
-                calc.valueNotUsedWarning("computeQuadraticFormula");
-                double quadResult = calc.getArithmetic().computeQuadraticFormula(userNumArr[0], userNumArr[1], userNumArr[2], posOrNeg, calc.getDisplayValue());
-                calc.displayResult(calc, quadResult, "computeQuadraticFormula");
-            }
-            else if(calc.inputError == false && method.equals("hyp")) {
-                calc.valueNotUsedWarning("computeHypotenus");
-                double hyp = calc.getArithmetic().computeHypotenus(userNumArr[0], userNumArr[1]);
-                calc.displayResult(calc, hyp, "computeHypotenus");
             } 
             
             // Add the currently displayed value to the value in memory (store in memory and update display) *
@@ -454,46 +464,54 @@ public class SciCalculator
         double val = 0.0;
         
         //don't perform the calculations if the user inputted something other than a double or integer
+       //calculates using input
         if(calc.inputError == false && displayOrInput.equals("input")) {
-            if(method.equals("sin")) {
-                val = calc.getTrigFunctions().sine(userNumArr[0]);
+            //a little easier to type then doing if else statements
+            switch(method) {
+                case "sin":
+                    val = calc.getTrigFunctions().sine(userNumArr[0]);
+                    break;
+                case "cos":
+                    val = calc.getTrigFunctions().cosine(userNumArr[0]);
+                    break;
+                case "tan":
+                    val = calc.getTrigFunctions().tangent(userNumArr[0]);
+                    break;
+                //needs to be lower case because we convert it to lower case
+                case "invsin": 
+                    val = calc.getTrigFunctions().inverseSine(userNumArr[0]);
+                    break;
+                case "invcos":
+                    val = calc.getTrigFunctions().inverseCosine(userNumArr[0]);
+                    break;
+                case "invtan":
+                    val = calc.getTrigFunctions().inverseTangent(userNumArr[0]);
+                    break;
             }
-            else if(method.equals("cos")) {
-                val = calc.getTrigFunctions().cosine(userNumArr[0]);
-            }
-            else if(method.equals("tan")) {
-                val = calc.getTrigFunctions().tangent(userNumArr[0]);
-            }
-            //needs to be lower case because we convert it to lower case
-            else if(method.equals("invsin")) {
-                val = calc.getTrigFunctions().inverseSine(userNumArr[0]);
-            }
-            else if(method.equals("invcos")) {
-                val = calc.getTrigFunctions().inverseCosine(userNumArr[0]);
-            }
-            else if(method.equals("invtan")) {
-                val = calc.getTrigFunctions().inverseTangent(userNumArr[0]);
-            }  
         }
+        //calculates using the display
         else if(displayOrInput.equals("display")) {
-            if(method.equals("sin")) {
-                val = calc.getTrigFunctions().sine(calc.getDisplayValue());
-            }
-            else if(method.equals("cos")) {
-                val = calc.getTrigFunctions().cosine(calc.getDisplayValue());
-            }
-            else if(method.equals("tan")) {
-                val = calc.getTrigFunctions().tangent(calc.getDisplayValue());
-            }
-            //needs to be lower case because we convert it to lower case
-            else if(method.equals("invsin")) {
-                val = calc.getTrigFunctions().inverseSine(calc.getDisplayValue());
-            }
-            else if(method.equals("invcos")) {
-                val = calc.getTrigFunctions().inverseCosine(calc.getDisplayValue());
-            }
-            else if(method.equals("invtan")) {
-                val = calc.getTrigFunctions().inverseTangent(calc.getDisplayValue());
+            //a little easier to type then doing if else statements
+            switch(method) {
+                case "sin":
+                    val = calc.getTrigFunctions().sine(calc.getDisplayValue());
+                    break;
+                case "cos":
+                    val = calc.getTrigFunctions().cosine(calc.getDisplayValue());
+                    break;
+                case "tan":
+                    val = calc.getTrigFunctions().tangent(calc.getDisplayValue());
+                    break;
+                //needs to be lower case because we convert it to lower case
+                case "invsin": 
+                    calc.getTrigFunctions().inverseSine(calc.getDisplayValue());
+                    break;
+                case "invcos":
+                    calc.getTrigFunctions().inverseCosine(calc.getDisplayValue());
+                    break;
+                case "invtan":
+                    calc.getTrigFunctions().inverseTangent(calc.getDisplayValue());
+                    break;
             }
         }
         return val;
